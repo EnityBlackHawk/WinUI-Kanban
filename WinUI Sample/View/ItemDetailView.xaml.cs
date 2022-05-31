@@ -12,6 +12,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,9 +24,18 @@ namespace WinUI_Sample.View
     /// </summary>
     public sealed partial class ItemDetailView : Page
     {
+        public ViewModel.ItemDetailViewModel ViewModelIntance { get; set; }
+
+        public Color BackgroundColor { get; set; }
         public ItemDetailView()
         {
             this.InitializeComponent();
+            ViewModelIntance = App.GetService<ViewModel.ItemDetailViewModel>();
+        }
+
+        private void Page_Loaded(object sender, object e)
+        {
+            ViewModelIntance.Load();
         }
     }
 }

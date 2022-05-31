@@ -9,6 +9,16 @@ namespace WinUI_Sample.ViewModel
     {
         public Tools.AsyncCommand SaveCommand { get; set; }
 
+        private ItemModel _selectedItem;
+
+        public ItemModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; OnPropertyChanged(); }
+        }
+
+        private int _editingIndex;
+
         public ObservableCollection<ItemModel> ToDoList { get; set; }
         public ObservableCollection<ItemModel> InProgressList { get; set; }
         public ObservableCollection<Model.ItemModel> DoneList { get; set; }
@@ -68,9 +78,61 @@ namespace WinUI_Sample.ViewModel
             }
         }
 
-        public void EditItem(string sourceName, ItemModel itemModel)
+        public async Task EditItem(string sourceName, ItemModel itemModel)
         {
-            App.GetService<View.ViewManager>().Navegate(App.GetService<View.ItemDetailView>(), true);
+            ItemModel im = null;
+            if (sourceName == "ToDoList")
+            {
+                for (int i = 0; i < ToDoList.Count; i++)
+                {
+                    if (ToDoList[i] == itemModel)
+                    { 
+                        im = ToDoList[i];
+                        ToDoList.RemoveAt(i);
+                        _editingIndex = i;
+                        break;
+                    }
+                }
+            }
+            else if (sourceName == "InProgressList")
+            {
+                for (int i = 0; i < InProgressList.Count; i++)
+                {
+                    if (InProgressList[i] == itemModel)
+                    {
+                        im = InProgressList[i];
+                        InProgressList.RemoveAt(i);
+                        _editingIndex = i;
+                        break;
+                    }
+                }
+            }
+            else if (sourceName == "DoneList")
+            {
+                for (int i = 0; i < DoneList.Count; i++)
+                {
+                    if (DoneList[i] == itemModel)
+                    {
+                        im = DoneList[i];
+                        DoneList.RemoveAt(i);
+                        _editingIndex = i;
+                        break;
+                    }
+                }
+            }
+            SelectedItem = im;
+            App.GetService<ViewModel.ItemDetailViewModel>().Load();
+            await App.GetService<View.ViewManager>().Navegate(App.GetService<View.ItemDetailView>(), true);
+        }
+
+        public void GetFromDetail()
+        {
+            if (_editingIndex == -1) return;
+            int table = SelectedItem.Table;
+            if (table == 0) ToDoList.Insert(_editingIndex, SelectedItem);
+            else if (table == 1) InProgressList.Insert(_editingIndex, SelectedItem);
+            else if (table == 2) DoneList.Insert(_editingIndex, SelectedItem);
+            _editingIndex = -1;
         }
 
         public async Task Save()

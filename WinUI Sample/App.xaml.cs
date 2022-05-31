@@ -19,6 +19,8 @@ namespace WinUI_Sample
             services.AddSingleton<ViewModel.HomeViewModel>();
             services.AddSingleton<ViewModel.LoginViewModel>();
             services.AddSingleton<ViewModel.TableViewModel>();
+            services.AddSingleton<ViewModel.ItemDetailViewModel>();
+            
 
 
             services.AddSingleton<View.HomeView>();

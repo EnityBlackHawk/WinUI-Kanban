@@ -10,7 +10,8 @@ namespace WinUI_Sample.ViewModel
 {
     public class ItemDetailViewModel : NewObservableObject
     {
-        public ItemModel ItemModel { get; set; }
+        private TableViewModel _tableViewModel;
+        public AsyncCommand SaveCommand { get; set; }
 
         private string _title;
 
@@ -28,9 +29,39 @@ namespace WinUI_Sample.ViewModel
             set { _message = value; OnPropertyChanged(); }
         }
 
-        public ItemDetailViewModel(ItemModel itemModel)
+
+        private Windows.UI.Color _color;
+
+        public Windows.UI.Color Color
         {
-            ItemModel = itemModel;
+            get => _color;
+            set { _color = value; OnPropertyChanged(); }
+        }
+
+
+        public ItemDetailViewModel()
+        {
+            _tableViewModel = App.GetService<TableViewModel>();
+
+            SaveCommand = new AsyncCommand(Save);
+        }
+
+        public void Load()
+        {
+            var itemModel = _tableViewModel.SelectedItem;
+            Title = itemModel.Title;
+            Message = itemModel.Message;
+
+            Color = Windows.UI.Color.FromArgb(255, itemModel.Red, itemModel.Green, itemModel.Blue);
+        }
+
+        private async Task Save()
+        {
+            _tableViewModel.SelectedItem.Title = Title;
+            _tableViewModel.SelectedItem.Message = Message;
+
+            _tableViewModel.GetFromDetail();
+            await App.GetService<View.ViewManager>().Navegate(App.GetService<View.TablesView>());
         }
     }
 }

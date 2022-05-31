@@ -6,20 +6,40 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Model="using:WinUI_Sample.Model"
+    xmlns:Converter="using:WinUI_Sample.Converters"
     mc:Ignorable="d"
     >
     <Page.Background>
         <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.1" TintColor="White" FallbackColor="#7F000000"/>
     </Page.Background>
 
+    <Page.Resources>
+        <Converter:ColorToSolidColorBrushConverter x:Key="converter"/>
+    </Page.Resources>
 
-    <StackPanel CornerRadius="5"
-                        MinHeight="150" Background="Black" Padding="5,10,5,10" HorizontalAlignment="Stretch">
-        <TextBox Text="Title" FontSize="20" FontWeight="Bold" Margin="10,0,0,0"
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel CornerRadius="5" Grid.Column="1" Grid.Row="1"
+                        MinHeight="150" Background="{x:Bind ViewModelIntance.Color, Converter={StaticResource converter}, Mode=OneWay}" Padding="5,10,5,10" HorizontalAlignment="Stretch">
+            <TextBox Text="{x:Bind ViewModelIntance.Title, Mode=TwoWay}" FontSize="20" FontWeight="Bold" Margin="10,0,0,0"
                            Foreground="White" FontFamily="Segou UI"/>
-        <TextBox Text="Message" FontSize="15" FontWeight="Normal"
+            <TextBox Text="{x:Bind ViewModelIntance.Message, Mode=TwoWay}" FontSize="15" FontWeight="Normal"
                            Foreground="White" Margin="10,10,0,0" FontFamily="Segou UI"/>
-    </StackPanel>
+            <Button Margin="10" Content="Save" Command="{x:Bind ViewModelIntance.SaveCommand}"/>
+        </StackPanel>
+    </Grid>
 
 
 

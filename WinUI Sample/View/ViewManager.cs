@@ -60,7 +60,7 @@ namespace WinUI_Sample.View
 
         public uint LastFrameFilled { get; set; } = 0;
 
-        public void Navegate(object target, bool keepBackVisible = false)
+        public async Task Navegate(object target, bool keepBackVisible = false)
         {
             if(LastFrameFilled == 0)
             {
@@ -71,40 +71,43 @@ namespace WinUI_Sample.View
             else if(LastFrameFilled == 1)
             {
                 LastFrameFilled = 2;
-                FrameTwoOpacity = 1;
                 FrameTwoContent = target;
+                FrameTwoZindex = 2;
+                FrameOneZindex = 1;
+                FrameTwoOpacity = 1;
                 FrameOneOpacity = keepBackVisible ? 1 : 0;
-                FrameTwoZindex = 1;
-                FrameOneZindex = 0;
+                
             }
             else if(LastFrameFilled == 2)
             {
                 LastFrameFilled = 1;
-                FrameOneOpacity = 1;
                 FrameOneContent = target;
+                FrameOneOpacity = 1;
+                FrameOneZindex = 2;
+                FrameTwoZindex = 1;
                 FrameTwoOpacity = keepBackVisible ? 1 : 0;
-                FrameOneZindex = 1;
-                FrameTwoZindex = 0;
+
             }
         }
 
-        public void GoBack()
+        public async Task GoBack()
         {
             if (LastFrameFilled == 1)
             {
                 LastFrameFilled = 2;
+                FrameTwoZindex = 2;
+                FrameOneZindex = 1;
                 FrameTwoOpacity = 1;
                 FrameOneOpacity = 0;
-                FrameTwoZindex = 1;
-                FrameOneZindex = 0;
             }
             else if (LastFrameFilled == 2)
             {
                 LastFrameFilled = 1;
+                FrameOneZindex = 2;
+                FrameTwoZindex = 1;
                 FrameOneOpacity = 1;
                 FrameTwoOpacity = 0;
-                FrameOneZindex = 1;
-                FrameTwoZindex = 0;
+                
             }
         }
 
