@@ -8,6 +8,7 @@ namespace WinUI_Sample.ViewModel
     public class TableViewModel : Tools.NewObservableObject
     {
         public Tools.AsyncCommand SaveCommand { get; set; }
+        public Tools.ButtonCommand NewCommand { get; set; }
 
         private ItemModel _selectedItem;
 
@@ -17,7 +18,7 @@ namespace WinUI_Sample.ViewModel
             set { _selectedItem = value; OnPropertyChanged(); }
         }
 
-        private int _editingIndex;
+        private int _editingIndex = -1;
 
         public ObservableCollection<ItemModel> ToDoList { get; set; }
         public ObservableCollection<ItemModel> InProgressList { get; set; }
@@ -29,6 +30,7 @@ namespace WinUI_Sample.ViewModel
             DoneList = new();
 
             SaveCommand = new Tools.AsyncCommand(Save);
+            NewCommand = new Tools.ButtonCommand(NewItem);
 
             Load();
         }
@@ -78,7 +80,15 @@ namespace WinUI_Sample.ViewModel
             }
         }
 
-        public async Task EditItem(string sourceName, ItemModel itemModel)
+        public void NewItem()
+        {
+            ItemModel im = new();
+            SelectedItem = im;
+            App.GetService<ViewModel.ItemDetailViewModel>().Load();
+            App.GetService<View.ViewManager>().Navegate(App.GetService<View.ItemDetailView>(), true);
+        }
+
+        public void EditItem(string sourceName, ItemModel itemModel)
         {
             ItemModel im = null;
             if (sourceName == "ToDoList")
@@ -122,17 +132,30 @@ namespace WinUI_Sample.ViewModel
             }
             SelectedItem = im;
             App.GetService<ViewModel.ItemDetailViewModel>().Load();
-            await App.GetService<View.ViewManager>().Navegate(App.GetService<View.ItemDetailView>(), true);
+            App.GetService<View.ViewManager>().Navegate(App.GetService<View.ItemDetailView>(), true);
         }
 
         public void GetFromDetail()
         {
-            if (_editingIndex == -1) return;
+            if (_editingIndex == -1)
+            {
+                Add();
+                return;
+            }
             int table = SelectedItem.Table;
             if (table == 0) ToDoList.Insert(_editingIndex, SelectedItem);
             else if (table == 1) InProgressList.Insert(_editingIndex, SelectedItem);
             else if (table == 2) DoneList.Insert(_editingIndex, SelectedItem);
             _editingIndex = -1;
+        }
+
+        public void Add()
+        {
+            if (_editingIndex != -1) return;
+            int table = SelectedItem.Table;
+            if (table == 0) ToDoList.Add(SelectedItem);
+            else if (table == 1) InProgressList.Add(SelectedItem);
+            else if (table == 2) DoneList.Add(SelectedItem);
         }
 
         public async Task Save()

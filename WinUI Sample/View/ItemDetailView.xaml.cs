@@ -26,16 +26,15 @@ namespace WinUI_Sample.View
     {
         public ViewModel.ItemDetailViewModel ViewModelIntance { get; set; }
 
-        public Color BackgroundColor { get; set; }
         public ItemDetailView()
         {
             this.InitializeComponent();
             ViewModelIntance = App.GetService<ViewModel.ItemDetailViewModel>();
         }
 
-        private void Page_Loaded(object sender, object e)
+        private void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
         {
-            ViewModelIntance.Load();
+            ViewModelIntance.Color = sender.Color;
         }
     }
 }

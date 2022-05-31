@@ -60,7 +60,7 @@ namespace WinUI_Sample.View
 
         public uint LastFrameFilled { get; set; } = 0;
 
-        public async Task Navegate(object target, bool keepBackVisible = false)
+        public void Navegate(object target, bool keepBackVisible = false)
         {
             if(LastFrameFilled == 0)
             {
@@ -90,7 +90,7 @@ namespace WinUI_Sample.View
             }
         }
 
-        public async Task GoBack()
+        public void GoBack()
         {
             if (LastFrameFilled == 1)
             {
@@ -110,6 +110,5 @@ namespace WinUI_Sample.View
                 
             }
         }
-
     }
 }

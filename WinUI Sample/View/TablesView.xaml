@@ -15,8 +15,8 @@
                         MinHeight="150" Background="{x:Bind Color}" Padding="5,10,5,10" HorizontalAlignment="Stretch">
                 <TextBlock Text="{x:Bind Title}" FontSize="20" FontWeight="Bold" Margin="10,0,0,0"
                            Foreground="White" FontFamily="Segou UI"/>
-                <TextBlock Text="{x:Bind Message}" FontSize="15" FontWeight="Normal"
-                           Foreground="White" Margin="10,10,0,0" FontFamily="Segou UI"/>
+                <TextBlock Text="{x:Bind Message}" FontSize="15" FontWeight="Normal" TextWrapping="WrapWholeWords"
+                           Foreground="White" Margin="10,10,0,0" FontFamily="Segou UI" VerticalAlignment="Stretch"/>
             </StackPanel>
         </DataTemplate>
         
@@ -37,9 +37,12 @@
 
             </Grid.RowDefinitions>
 
-            <Button Content="Save" Grid.Row="2" Command="{x:Bind ViewModelInstance.SaveCommand}"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <AppBarButton Icon="Save"  Command="{x:Bind ViewModelInstance.SaveCommand}" Margin="0,0,0,0" Height="50" Width="50" />
+                <AppBarButton Icon="Add" Margin="0,0,0,0" Width="50" Height="50" Command="{x:Bind ViewModelInstance.NewCommand}"/>
+            </StackPanel>
 
-            <!-- Column 0 -->
+        <!-- Column 0 -->
             <TextBlock Text="To Do" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Margin="10"/>
             

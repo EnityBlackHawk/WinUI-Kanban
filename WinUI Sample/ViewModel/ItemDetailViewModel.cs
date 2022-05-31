@@ -12,6 +12,7 @@ namespace WinUI_Sample.ViewModel
     {
         private TableViewModel _tableViewModel;
         public AsyncCommand SaveCommand { get; set; }
+        public ButtonCommand CancelCommand { get; set; }
 
         private string _title;
 
@@ -44,6 +45,11 @@ namespace WinUI_Sample.ViewModel
             _tableViewModel = App.GetService<TableViewModel>();
 
             SaveCommand = new AsyncCommand(Save);
+            CancelCommand = new ButtonCommand(() =>
+            {
+                _tableViewModel.GetFromDetail();
+                App.GetService<View.ViewManager>().GoBack();
+            });
         }
 
         public void Load()
@@ -59,9 +65,12 @@ namespace WinUI_Sample.ViewModel
         {
             _tableViewModel.SelectedItem.Title = Title;
             _tableViewModel.SelectedItem.Message = Message;
+            _tableViewModel.SelectedItem.Blue = Color.B;
+            _tableViewModel.SelectedItem.Red = Color.R;
+            _tableViewModel.SelectedItem.Green = Color.G;
 
             _tableViewModel.GetFromDetail();
-            await App.GetService<View.ViewManager>().Navegate(App.GetService<View.TablesView>());
+            App.GetService<View.ViewManager>().GoBack();
         }
     }
 }
