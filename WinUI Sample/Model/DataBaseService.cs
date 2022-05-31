@@ -36,6 +36,11 @@ namespace WinUI_Sample.Model
             
         }
 
+        public async Task Remove<T>(T obj)
+        {
+            await _connection.DeleteAsync(obj);
+        }
+
         public async Task RemoveAll<T>()
         {
             await _connection.DeleteAllAsync<T>();
@@ -44,6 +49,11 @@ namespace WinUI_Sample.Model
         public async Task Update<T>(IEnumerable<T> values)
         {
             await _connection.UpdateAllAsync(values);
+        }
+
+        public async Task Update<T>(T value)
+        {
+            await _connection.UpdateAsync(value);
         }
 
         public async Task<ICollection<T>> GetAsync<T>() where T:new()

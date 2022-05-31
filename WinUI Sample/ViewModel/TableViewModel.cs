@@ -7,6 +7,7 @@ namespace WinUI_Sample.ViewModel
 {
     public class TableViewModel : Tools.NewObservableObject
     {
+        private DataBaseService _dataBase;
         public Tools.AsyncCommand SaveCommand { get; set; }
         public Tools.ButtonCommand NewCommand { get; set; }
 
@@ -32,12 +33,14 @@ namespace WinUI_Sample.ViewModel
             SaveCommand = new Tools.AsyncCommand(Save);
             NewCommand = new Tools.ButtonCommand(NewItem);
 
+            _dataBase = App.GetService<DataBaseService>();
+
             Load();
         }
 
         private async Task Load()
         {
-            ICollection<ItemModel> list = await App.GetService<DataBaseService>().GetAsync<ItemModel>();
+            ICollection<ItemModel> list = await _dataBase.GetAsync<ItemModel>();
             foreach(ItemModel item in list)
             {
                 if (item.Table == 0) ToDoList.Add(item);
@@ -46,7 +49,7 @@ namespace WinUI_Sample.ViewModel
             }
         }
 
-        public void ChangeItemList(ItemModel item, string sourceName, string targetName)
+        public async Task ChangeItemList(ItemModel item, string sourceName, string targetName)
         {
             if (sourceName == targetName) return;
 
@@ -78,6 +81,9 @@ namespace WinUI_Sample.ViewModel
                 item.Table = 2;
                 DoneList.Add(item);
             }
+
+            await _dataBase.Update(item);
+            
         }
 
         public void NewItem()
@@ -149,21 +155,41 @@ namespace WinUI_Sample.ViewModel
             _editingIndex = -1;
         }
 
-        public void Add()
+        public async void Add()
         {
             if (_editingIndex != -1) return;
             int table = SelectedItem.Table;
             if (table == 0) ToDoList.Add(SelectedItem);
             else if (table == 1) InProgressList.Add(SelectedItem);
             else if (table == 2) DoneList.Add(SelectedItem);
+
+            await _dataBase.Add(SelectedItem);
         }
 
         public async Task Save()
         {
-            var conection = App.GetService<Model.DataBaseService>();
+            var conection = _dataBase;
             await conection.Update(ToDoList);
             await conection.Update(InProgressList);
             await conection.Update(DoneList);
+        }
+
+        public async Task Remove(string sourceName, ItemModel item)
+        {
+            if (sourceName == "ToDoList")
+            {
+                ToDoList.Remove(item);
+            }
+            else if (sourceName == "InProgressList")
+            {
+                InProgressList.Remove(item);
+            }
+            else if (sourceName == "DoneList")
+            {
+                DoneList.Remove(item);
+            }
+
+            await _dataBase.Remove(item);
         }
 
     }
