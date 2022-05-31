@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="WinUI_Sample.View.ItemDetailView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUI_Sample.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Model="using:WinUI_Sample.Model"
+    mc:Ignorable="d"
+    >
+    <Page.Background>
+        <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.1" TintColor="White" FallbackColor="#7F000000"/>
+    </Page.Background>
+
+
+    <StackPanel CornerRadius="5"
+                        MinHeight="150" Background="Black" Padding="5,10,5,10" HorizontalAlignment="Stretch">
+        <TextBox Text="Title" FontSize="20" FontWeight="Bold" Margin="10,0,0,0"
+                           Foreground="White" FontFamily="Segou UI"/>
+        <TextBox Text="Message" FontSize="15" FontWeight="Normal"
+                           Foreground="White" Margin="10,10,0,0" FontFamily="Segou UI"/>
+    </StackPanel>
+
+
+
+</Page>
