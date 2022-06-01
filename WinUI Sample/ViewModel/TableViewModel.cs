@@ -90,6 +90,9 @@ namespace WinUI_Sample.ViewModel
         {
             ItemModel im = new();
             SelectedItem = im;
+            im.Red = 68;
+            im.Blue = 68;
+            im.Green = 68;
             App.GetService<ViewModel.ItemDetailViewModel>().Load();
             App.GetService<View.ViewManager>().Navegate(App.GetService<View.ItemDetailView>(), true);
         }
@@ -158,6 +161,7 @@ namespace WinUI_Sample.ViewModel
         public async void Add()
         {
             if (_editingIndex != -1) return;
+            if (string.IsNullOrEmpty(SelectedItem.Title)) return;
             int table = SelectedItem.Table;
             if (table == 0) ToDoList.Add(SelectedItem);
             else if (table == 1) InProgressList.Add(SelectedItem);

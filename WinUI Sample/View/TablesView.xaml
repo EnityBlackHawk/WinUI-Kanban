@@ -36,18 +36,40 @@
                 <RowDefinition Height="auto"/>
 
             </Grid.RowDefinitions>
+            
+            <!-- Row 2 -->
+            <Grid Grid.Row="2" Grid.ColumnSpan="3" >
+                <StackPanel Orientation="Horizontal" >
+                    <AppBarButton Icon="Save"  Command="{x:Bind ViewModelInstance.SaveCommand}" Margin="0,0,0,0" Height="50" Width="50" />
+                    <AppBarButton Icon="Add" Margin="0,0,0,0" Width="50" Height="50" Command="{x:Bind ViewModelInstance.NewCommand}"/>
+                </StackPanel>
+                <Border Background="#FF0000" x:Name="DeleteBorder" DragOver="Grid_DragOver" 
+                        Drop="Grid_Drop" CanDrag="True" DragEnter="ListView_DragEnter" AllowDrop="True">
+                    <TextBlock Text="Deletar" VerticalAlignment="Center" HorizontalAlignment="Center"
+                               FontSize="20"/>
+                    <Border.Projection>
+                        <PlaneProjection LocalOffsetY="100"/>
+                    </Border.Projection>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="2">
-                <AppBarButton Icon="Save"  Command="{x:Bind ViewModelInstance.SaveCommand}" Margin="0,0,0,0" Height="50" Width="50" />
-                <AppBarButton Icon="Add" Margin="0,0,0,0" Width="50" Height="50" Command="{x:Bind ViewModelInstance.NewCommand}"/>
-            </StackPanel>
+                    <Border.Resources>
+                        <Storyboard x:Key="pop_up">
+                            <DoubleAnimation Storyboard.TargetName="DeleteBorder" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.LocalOffsetY)"
+                                                 To="0" Duration="0:0:0.25"/>
+                        </Storyboard>
+                        <Storyboard x:Key="pop_down">
+                            <DoubleAnimation Storyboard.TargetName="DeleteBorder" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.LocalOffsetY)"
+                                                 To="100" Duration="0:0:0.25"/>
+                        </Storyboard>
+                    </Border.Resources>
+                </Border>
+            </Grid>
 
         <!-- Column 0 -->
             <TextBlock Text="To Do" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Margin="10"/>
             
             <ListView Grid.Column="0" Grid.Row="1" x:Name="ToDoList" ScrollViewer.VerticalScrollMode="Enabled" Padding="5" CornerRadius="5"
-                    DragOver="ListView_DragOver" Drop="ListView_Drop" SelectionMode="None" DragLeave="ListView_DragLeave"
+                    DragOver="ListView_DragOver" Drop="ListView_Drop" SelectionMode="None" DragLeave="ListView_DragLeave" DragItemsCompleted="ListView_DragItemsCompleted"
                     DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" Background="#00000000"
                     CanDragItems="True" CanReorderItems="True" AllowDrop="True" ItemClick="ToDoList_ItemClick" IsItemClickEnabled="True"
                     ItemsSource="{x:Bind ViewModelInstance.ToDoList, Mode=TwoWay}" ItemTemplate="{StaticResource dt}">
@@ -71,7 +93,7 @@
                        FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Grid.Column="1" Margin="10"/>
             <ListView Grid.Column="1" Grid.Row="1" x:Name="InProgressList" SelectionMode="None" Padding="5" CornerRadius="5"
                       DragOver="ListView_DragOver" Drop="ListView_Drop" Background="#00000000"
-                      DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" DragLeave="ListView_DragLeave"
+                      DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" DragLeave="ListView_DragLeave" DragItemsCompleted="ListView_DragItemsCompleted"
                       CanDragItems="True" CanReorderItems="True" AllowDrop="True" ItemClick="ToDoList_ItemClick" IsItemClickEnabled="True"
                       ItemsSource="{x:Bind ViewModelInstance.InProgressList, Mode=TwoWay}" ItemTemplate="{StaticResource dt}">
 
@@ -93,7 +115,7 @@
                        FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Grid.Column="2" Margin="10"/>
             <ListView Grid.Column="2" Grid.Row="1" x:Name="DoneList" SelectionMode="None" Padding="5" CornerRadius="5"
                       DragOver="ListView_DragOver" Drop="ListView_Drop" Background="#00000000"
-                      DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" DragLeave="ListView_DragLeave"
+                      DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" DragLeave="ListView_DragLeave" DragItemsCompleted="ListView_DragItemsCompleted"
                       CanDragItems="True" CanReorderItems="True" AllowDrop="True" ItemClick="ToDoList_ItemClick" IsItemClickEnabled="True"
                       ItemsSource="{x:Bind ViewModelInstance.DoneList, Mode=TwoWay}" ItemTemplate="{StaticResource dt}">
 

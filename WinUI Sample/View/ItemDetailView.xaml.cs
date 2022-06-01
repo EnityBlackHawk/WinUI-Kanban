@@ -24,17 +24,22 @@ namespace WinUI_Sample.View
     /// </summary>
     public sealed partial class ItemDetailView : Page
     {
-        public ViewModel.ItemDetailViewModel ViewModelIntance { get; set; }
+        public ViewModel.ItemDetailViewModel ViewModelInstance { get; set; }
 
         public ItemDetailView()
         {
             this.InitializeComponent();
-            ViewModelIntance = App.GetService<ViewModel.ItemDetailViewModel>();
+            ViewModelInstance = App.GetService<ViewModel.ItemDetailViewModel>();
         }
 
         private void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
         {
-            ViewModelIntance.Color = sender.Color;
+            ViewModelInstance.Color = sender.Color;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            colorPicker.Color = ViewModelInstance.Color;
         }
     }
 }

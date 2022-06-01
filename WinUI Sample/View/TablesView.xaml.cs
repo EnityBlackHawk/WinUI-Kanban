@@ -35,11 +35,12 @@ namespace WinUI_Sample.View
             ViewModelInstance = App.GetService<ViewModel.TableViewModel>();
         }
 
-        private async void ListView_Drop(object sender, DragEventArgs e)
+        private void ListView_Drop(object sender, DragEventArgs e)
         {
             ListView lv = sender as ListView;
             ViewModelInstance.ChangeItemList(_itemModel, _sourceName, lv.Name);
             (lv.Resources["an_Off"] as Storyboard).Begin();
+
         }
 
         private void ListView_DragOver(object sender, DragEventArgs e)
@@ -56,6 +57,7 @@ namespace WinUI_Sample.View
             {
                 _itemModel = (Model.ItemModel)a;
             }
+            (DeleteBorder.Resources["pop_up"] as Storyboard).Begin();
         }
 
         private void ListView_DragEnter(object sender, DragEventArgs e)
@@ -72,6 +74,21 @@ namespace WinUI_Sample.View
         {
             ListView lv = sender as ListView;
             (lv.Resources["an_Off"] as Storyboard).Begin();
+        }
+
+        private void ListView_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+        {
+            (DeleteBorder.Resources["pop_down"] as Storyboard).Begin();
+        }
+
+        private async void Grid_Drop(object sender, DragEventArgs e)
+        {
+            await ViewModelInstance.Remove(_sourceName, _itemModel);
+        }
+
+        private void Grid_DragOver(object sender, DragEventArgs e)
+        {
+            e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move;
         }
     }
 }
