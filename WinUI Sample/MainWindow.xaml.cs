@@ -37,6 +37,8 @@ namespace WinUI_Sample
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(titleBar);
+
+            var mica = new Tools.Mica(this);
         }
 
 

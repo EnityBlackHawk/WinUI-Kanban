@@ -10,7 +10,8 @@
     mc:Ignorable="d"
     >
     <Page.Background>
-        <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.1" TintColor="White" FallbackColor="#7F000000"/>
+        <!--<AcrylicBrush TintOpacity="0.2" TintLuminosityOpacity="0.5" TintColor="Black" FallbackColor="#7F000000"/>-->
+        <SolidColorBrush Color="#7F000000"/>
     </Page.Background>
 
     <Page.Resources>

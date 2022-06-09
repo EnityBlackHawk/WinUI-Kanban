@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     x:DefaultBindMode="OneWay">
 
-    <Grid x:Name="rootGrid" Background="Black">
+    <Grid x:Name="rootGrid" Background="Transparent">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
@@ -43,11 +43,13 @@
         </Grid.Resources>
         
         <!-- Title bar -->
-        <Grid x:Name="titleBar" Background="Black">
-            <Border Background="Black" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+        <Grid x:Name="titleBar" Background="Transparent">
+            <Border Background="Transparent" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <TextBlock Text="Kanban" FontSize="15" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Margin="10,0,0,0" Foreground="White"/>
         </Grid>
 
-        <Grid Margin="0,0,0,0" x:Name="elpGrid" Grid.Row="1" Visibility="Visible">
+        <Grid Margin="0,0,0,0" x:Name="elpGrid" Grid.Row="1" Visibility="Collapsed">
 
             <Grid.Projection>
                 <PlaneProjection/>
@@ -118,11 +120,11 @@
         </Grid>
 
 
-        <Border Visibility="Visible" Grid.Row="1">
-            <Border.Background>
+        <Border Visibility="Visible" Grid.Row="1" Background="Transparent">
+            <!--<Border.Background>
                 <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.1" TintColor="White" 
                               FallbackColor="#7F000000" Opacity="0.9"/>
-            </Border.Background>
+            </Border.Background>-->
 
             <Grid>
                 <Frame Content="{x:Bind ViewManager.FrameOneContent}" Canvas.ZIndex="{x:Bind ViewManager.FrameOneZindex}"

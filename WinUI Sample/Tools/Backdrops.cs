@@ -14,7 +14,7 @@ using System.Runtime.InteropServices; // For DllImport
 using Microsoft.UI.Xaml;
 using WinRT;
 
-namespace MicaTest
+namespace Tools
 {
     class WindowsSystemDispatcherQueueHelper
     {
