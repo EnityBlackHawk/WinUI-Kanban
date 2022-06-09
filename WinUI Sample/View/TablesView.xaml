@@ -37,33 +37,7 @@
 
             </Grid.RowDefinitions>
             
-            <!-- Row 2 -->
-            <Grid Grid.Row="2" Grid.ColumnSpan="3" >
-                <StackPanel Orientation="Horizontal" >
-                    <AppBarButton Icon="Save"  Command="{x:Bind ViewModelInstance.SaveCommand}" Margin="0,0,0,0" Height="50" Width="50" />
-                    <AppBarButton Icon="Add" Margin="0,0,0,0" Width="50" Height="50" Command="{x:Bind ViewModelInstance.NewCommand}"/>
-                </StackPanel>
-                <Border Background="#FF0000" x:Name="DeleteBorder" DragOver="Grid_DragOver" 
-                        Drop="Grid_Drop" CanDrag="True" DragEnter="ListView_DragEnter" AllowDrop="True">
-                    <TextBlock Text="Deletar" VerticalAlignment="Center" HorizontalAlignment="Center"
-                               FontSize="20"/>
-                    <Border.Projection>
-                        <PlaneProjection LocalOffsetY="100"/>
-                    </Border.Projection>
-
-                    <Border.Resources>
-                        <Storyboard x:Key="pop_up">
-                            <DoubleAnimation Storyboard.TargetName="DeleteBorder" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.LocalOffsetY)"
-                                                 To="0" Duration="0:0:0.25"/>
-                        </Storyboard>
-                        <Storyboard x:Key="pop_down">
-                            <DoubleAnimation Storyboard.TargetName="DeleteBorder" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.LocalOffsetY)"
-                                                 To="100" Duration="0:0:0.25"/>
-                        </Storyboard>
-                    </Border.Resources>
-                </Border>
-            </Grid>
-
+            
         <!-- Column 0 -->
             <TextBlock Text="To Do" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Margin="10"/>
@@ -85,7 +59,7 @@
                     </Storyboard>
                 </ListView.Resources>
 
-        </ListView>
+            </ListView>
             
 
             <!-- Column 1 -->
@@ -108,7 +82,7 @@
                     </Storyboard>
                 </ListView.Resources>
 
-        </ListView>
+            </ListView>
 
             <!-- Column 2 -->
             <TextBlock Text="Done" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -131,7 +105,40 @@
                 </ListView.Resources>
 
             </ListView>
-        </Grid>
+
+            <!-- Row 2 -->
+            <Grid Grid.Row="2" Grid.ColumnSpan="3" >
+                <StackPanel Orientation="Horizontal" >
+                    <AppBarButton Icon="Save"  Command="{x:Bind ViewModelInstance.SaveCommand}" Margin="0,0,0,0" Height="50" Width="50" />
+                    <AppBarButton Icon="Add" Margin="0,0,0,0" Width="50" Height="50" Command="{x:Bind ViewModelInstance.NewCommand}"/>
+                    <AppBarButton Icon="Setting" Width="50" Height="50"/>
+            </StackPanel>
+                <Border Background="#FF0000" x:Name="DeleteBorder" DragOver="Grid_DragOver" 
+                            Drop="Grid_Drop" CanDrag="True" DragEnter="ListView_DragEnter" AllowDrop="True">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <SymbolIcon Symbol="Delete" Margin="0,0,10,0"/>
+                        <TextBlock Text="Delete" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           FontSize="20"/>
+                    </StackPanel>
+                    <Border.Projection>
+                        <PlaneProjection LocalOffsetY="100"/>
+                    </Border.Projection>
+
+                    <Border.Resources>
+                        <Storyboard x:Key="pop_up">
+                            <DoubleAnimation Storyboard.TargetName="DeleteBorder" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.LocalOffsetY)"
+                                                     To="0" Duration="0:0:0.25"/>
+                        </Storyboard>
+                        <Storyboard x:Key="pop_down">
+                            <DoubleAnimation Storyboard.TargetName="DeleteBorder" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.LocalOffsetY)"
+                                                     To="100" Duration="0:0:0.25"/>
+                        </Storyboard>
+                    </Border.Resources>
+                </Border>
+            </Grid>
+
+
+    </Grid>
 
     
 </Page>

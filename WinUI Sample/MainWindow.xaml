@@ -3,12 +3,19 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WinUI_Sample"
+    xmlns:mucx="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     x:DefaultBindMode="OneWay">
 
-    <Grid x:Name="rootGrid">
+    <Grid x:Name="rootGrid" Background="Black">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
         <Grid.Resources>
             <Storyboard x:Name="Str2" RepeatBehavior="Forever">
                 <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetName="elp1" Storyboard.TargetProperty="(Shape.Stroke).(Brush.RelativeTransform).(CompositeTransform.Rotation)">
@@ -35,7 +42,12 @@
 
         </Grid.Resources>
         
-        <Grid Margin="0,0,0,0" x:Name="elpGrid">
+        <!-- Title bar -->
+        <Grid x:Name="titleBar" Background="Black">
+            <Border Background="Black" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+        </Grid>
+
+        <Grid Margin="0,0,0,0" x:Name="elpGrid" Grid.Row="1" Visibility="Visible">
 
             <Grid.Projection>
                 <PlaneProjection/>
@@ -64,9 +76,9 @@
             </Ellipse>
 
             <Ellipse StrokeThickness="10" VerticalAlignment="Center" 
-                     HorizontalAlignment="Center" x:Name="elp2" Height="200" Width="500" RenderTransformOrigin="0.5,0.5">
+                     HorizontalAlignment="Center" x:Name="elp2" Height="500" Width="500" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.Projection>
-                    <PlaneProjection RotationZ="0" RotationY="0" RotationX="0"/>
+                    <PlaneProjection RotationZ="0" RotationY="45" RotationX="45"/>
                 </Ellipse.Projection>
                 <Ellipse.RenderTransform>
                     <CompositeTransform Rotation="-60.73"/>
@@ -105,9 +117,11 @@
 
         </Grid>
 
-        <Border Visibility="Visible">
+
+        <Border Visibility="Visible" Grid.Row="1">
             <Border.Background>
-                <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.1" TintColor="White" FallbackColor="#7F000000"/>
+                <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.1" TintColor="White" 
+                              FallbackColor="#7F000000" Opacity="0.9"/>
             </Border.Background>
 
             <Grid>
@@ -129,7 +143,6 @@
             </Grid>
 
         </Border>
-
     </Grid>
 
 </Window>

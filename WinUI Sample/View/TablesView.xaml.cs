@@ -89,6 +89,7 @@ namespace WinUI_Sample.View
         private void Grid_DragOver(object sender, DragEventArgs e)
         {
             e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move;
+            e.DragUIOverride.Caption = "Delete";
         }
     }
 }

@@ -34,6 +34,9 @@ namespace WinUI_Sample
             ViewManager = App.GetService<View.ViewManager>();
             (rootGrid.Resources["Str2"] as Storyboard).Begin();
             (rootGrid.Resources["Str1"] as Storyboard).Begin();
+
+            ExtendsContentIntoTitleBar = true;
+            SetTitleBar(titleBar);
         }
 
 
