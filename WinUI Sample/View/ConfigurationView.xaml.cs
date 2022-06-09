@@ -23,9 +23,11 @@ namespace WinUI_Sample.View
     /// </summary>
     public sealed partial class ConfigurationView : Page
     {
+        public ViewModel.ConfigurationViewModel ViewModelInstance { get; set; }
         public ConfigurationView()
         {
             this.InitializeComponent();
+            ViewModelInstance = App.GetService<ViewModel.ConfigurationViewModel>();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace WinUI_Sample
             services.AddSingleton<ViewModel.LoginViewModel>();
             services.AddSingleton<ViewModel.TableViewModel>();
             services.AddSingleton<ViewModel.ItemDetailViewModel>();
+            services.AddSingleton<ViewModel.ConfigurationViewModel>();
             
 
 

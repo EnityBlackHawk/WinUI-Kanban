@@ -24,18 +24,16 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <TextBlock Text="Background effect: " Foreground="White" FontSize="15"
                     Margin="10,0,0,0" VerticalAlignment="Center"/>
-            <ComboBox Margin="10,0,0,0" VerticalAlignment="Center" Width="200">
-                <ComboBox.Items>
-                    <x:String>Mica</x:String>
-                    <x:String>Elipse</x:String>
-                    <x:String>Static Image</x:String>
-                </ComboBox.Items>
+            <ComboBox Margin="10,0,0,0" VerticalAlignment="Center" Width="200" 
+                      ItemsSource="{x:Bind ViewModelInstance.Backgrounds}" 
+                      SelectedItem="{x:Bind ViewModelInstance.SelectedBackground, Mode=TwoWay, UpdateSourceTrigger=LostFocus}">
+
             </ComboBox>
         
         </StackPanel>
         
         <!-- Row 2 -->
-        <Button Content="Save" Grid.Row="10" Margin="10,0,0,10"/>
+        <Button Content="Save" Grid.Row="10" Margin="10,0,0,10" Command="{x:Bind ViewModelInstance.SaveCommand}"/>
 
     </Grid>
 </Page>

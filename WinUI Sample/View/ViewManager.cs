@@ -62,6 +62,7 @@ namespace WinUI_Sample.View
 
         public void Navegate(object target, bool keepBackVisible = false)
         {
+
             if(LastFrameFilled == 0)
             {
                 LastFrameFilled = 1;
