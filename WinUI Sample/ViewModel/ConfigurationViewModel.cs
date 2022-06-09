@@ -21,16 +21,20 @@ namespace WinUI_Sample.ViewModel
             set { _selectedBackground = value; OnPropertyChanged(); }
         }
 
+        private Model.ConfigurationManager _configurationManager;
 
         public ConfigurationViewModel()
         {
             Backgrounds = new List<string> { "Mica", "Elipses", "Static image" };
-            SelectedBackground = "Mica";
+            _configurationManager = App.GetService<Model.ConfigurationManager>();
+            SelectedBackground = _configurationManager.GetBackgroundType();
             SaveCommand = new ButtonCommand(save);
         }
 
         private void save()
         {
+            _configurationManager.SetBackgroundType(_selectedBackground);
+            _configurationManager.Save();
             App.GetService<View.ViewManager>().Navegate(App.GetService<View.TablesView>());
         }
     }

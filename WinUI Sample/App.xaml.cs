@@ -32,6 +32,8 @@ namespace WinUI_Sample
             services.AddSingleton<View.ConfigurationView>();
 
             services.AddSingleton<Model.DataBaseService>();
+            services.AddSingleton<Model.ConfigurationManager>();
+        
         }).Build();
 
         public static T GetService<T>() where T : class => _host.Services.GetService(typeof(T)) as T;
@@ -43,6 +45,8 @@ namespace WinUI_Sample
         public App()
         {
             this.InitializeComponent();
+            var c = GetService<Model.ConfigurationManager>();
+            c.Load();
         }
 
         /// <summary>

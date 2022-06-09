@@ -23,6 +23,7 @@ namespace WinUI_Sample.Model
             _connection = new SQLiteAsyncConnection(dataBasePath);
 
             await _connection.CreateTableAsync<Model.ItemModel>();
+            await _connection.CreateTableAsync<Model.ConfigurationModel>();
         }
 
         public DataBaseService()
