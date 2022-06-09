@@ -111,8 +111,8 @@
                 <StackPanel Orientation="Horizontal" >
                     <AppBarButton Icon="Save"  Command="{x:Bind ViewModelInstance.SaveCommand}" Margin="0,0,0,0" Height="50" Width="50" />
                     <AppBarButton Icon="Add" Margin="0,0,0,0" Width="50" Height="50" Command="{x:Bind ViewModelInstance.NewCommand}"/>
-                    <AppBarButton Icon="Setting" Width="50" Height="50"/>
-            </StackPanel>
+                    <AppBarButton Icon="Setting" Width="50" Height="50" Command="{x:Bind ViewModelInstance.ConfigCommand}"/>
+                </StackPanel>
                 <Border Background="#FF0000" x:Name="DeleteBorder" DragOver="Grid_DragOver" 
                             Drop="Grid_Drop" CanDrag="True" DragEnter="ListView_DragEnter" AllowDrop="True">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">

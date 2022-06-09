@@ -11,6 +11,8 @@ namespace WinUI_Sample.ViewModel
         public Tools.AsyncCommand SaveCommand { get; set; }
         public Tools.ButtonCommand NewCommand { get; set; }
 
+        public Tools.ButtonCommand ConfigCommand { get; set; }
+
         private ItemModel _selectedItem;
 
         public ItemModel SelectedItem
@@ -32,6 +34,10 @@ namespace WinUI_Sample.ViewModel
 
             SaveCommand = new Tools.AsyncCommand(Save);
             NewCommand = new Tools.ButtonCommand(NewItem);
+            ConfigCommand = new Tools.ButtonCommand(() =>
+            {
+                App.GetService<View.ViewManager>().Navegate(App.GetService<View.ConfigurationView>());
+            });
 
             _dataBase = App.GetService<DataBaseService>();
 

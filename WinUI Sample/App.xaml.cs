@@ -28,6 +28,7 @@ namespace WinUI_Sample
             services.AddSingleton<View.ViewManager>();
             services.AddSingleton<View.TablesView>();
             services.AddSingleton<View.ItemDetailView>();
+            services.AddSingleton<View.ConfigurationView>();
 
             services.AddSingleton<Model.DataBaseService>();
         }).Build();

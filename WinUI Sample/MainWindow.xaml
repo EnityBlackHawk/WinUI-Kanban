@@ -43,7 +43,7 @@
         </Grid.Resources>
         
         <!-- Title bar -->
-        <Grid x:Name="titleBar" Background="Transparent">
+        <Grid x:Name="titleBar" Background="#7F000000">
             <Border Background="Transparent" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
             <TextBlock Text="Kanban" FontSize="15" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Left"
                        Margin="10,0,0,0" Foreground="White"/>

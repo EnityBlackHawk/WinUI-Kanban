@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="WinUI_Sample.View.ConfigurationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUI_Sample.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="Transparent">
+
+    <Grid RowSpacing="10" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+
+        <TextBlock Text="Configurations" Margin="10,0,0,0" FontFamily="Segoe UI" FontSize="25" FontWeight="Bold"
+                   Foreground="White"/>
+        
+        <!-- Row 1 -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Text="Background effect: " Foreground="White" FontSize="15"
+                    Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <ComboBox Margin="10,0,0,0" VerticalAlignment="Center" Width="200">
+                <ComboBox.Items>
+                    <x:String>Mica</x:String>
+                    <x:String>Elipse</x:String>
+                    <x:String>Static Image</x:String>
+                </ComboBox.Items>
+            </ComboBox>
+        
+        </StackPanel>
+        
+        <!-- Row 2 -->
+        <Button Content="Save" Grid.Row="10" Margin="10,0,0,10"/>
+
+    </Grid>
+</Page>
