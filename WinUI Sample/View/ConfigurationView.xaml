@@ -39,6 +39,9 @@
                     Margin="10,0,0,0" VerticalAlignment="Center"/>
             <TextBox Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"
                      Text="{x:Bind ViewModelInstance.Path, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+            <Button Margin="5,0,0,0" Command="{x:Bind ViewModelInstance.PathCommand}">
+                <SymbolIcon Symbol="Folder"/>
+            </Button>
 
         </StackPanel>
 

@@ -123,7 +123,7 @@
 
         <Border Grid.RowSpan="2" Opacity="0.8">
             <Border.Background>
-                <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.1" TintColor="Black" 
+                <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.5" TintColor="Black" 
                               FallbackColor="#7F000000" Opacity="1" x:Name="acrylic"/>
             </Border.Background>
         </Border>
