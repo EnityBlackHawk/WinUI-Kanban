@@ -11,7 +11,7 @@ namespace WinUI_Sample.ViewModel
     {
         public List<string> Backgrounds { get; set; }
 
-        public ButtonCommand SaveCommand { get; set; }
+        public AsyncCommand SaveCommand { get; set; }
         public ButtonCommand PathCommand { get; set; }
 
         private string _selectedBackground;
@@ -30,6 +30,14 @@ namespace WinUI_Sample.ViewModel
             set { _path = value; OnPropertyChanged(); }
         }
 
+        private bool _isAcrylic;
+
+        public bool IsAcrylic
+        {
+            get { return _isAcrylic; }
+            set { _isAcrylic = value; OnPropertyChanged(); }
+        }
+
 
         private Model.ConfigurationManager _configurationManager;
 
@@ -39,16 +47,24 @@ namespace WinUI_Sample.ViewModel
             _configurationManager = App.GetService<Model.ConfigurationManager>();
             SelectedBackground = _configurationManager.GetBackgroundType();
             Path = _configurationManager.GetBackgroundImagePath();
-            SaveCommand = new ButtonCommand(save);
+            IsAcrylic = _configurationManager.IsAcrylicActivated();
+            SaveCommand = new AsyncCommand(save);
             PathCommand = new ButtonCommand(GetPath);
         }
 
-        private void save()
+        private async Task save()
         {
-            _configurationManager.SetBackgroundType(SelectedBackground);
-            _configurationManager.SetBackgroundImagePath(Path);
-            _configurationManager.Save();
+            await Task.Run(() =>
+            {
+                _configurationManager.SetBackgroundType(SelectedBackground);
+                _configurationManager.SetBackgroundImagePath(Path);
+                _configurationManager.SetAcrylicActivated(IsAcrylic);
+                
+
+            });
+            await _configurationManager.Save();
             App.GetService<View.ViewManager>().Navegate(App.GetService<View.TablesView>());
+
         }
 
         private async void GetPath()

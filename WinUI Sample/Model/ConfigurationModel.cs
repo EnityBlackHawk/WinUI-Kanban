@@ -15,6 +15,8 @@ namespace WinUI_Sample.Model
         public string BackgroundType { get; set; }
         public string BackgroundImagePath { get; set; }
 
+        public bool IsAcrylicActivated { get; set; }
+        public double AcrylicStrength { get; set; }
         [Ignore]
         public BitmapImage BitmapImage
         {

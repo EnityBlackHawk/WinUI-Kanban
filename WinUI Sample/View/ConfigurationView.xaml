@@ -13,6 +13,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -42,6 +43,26 @@
             <Button Margin="5,0,0,0" Command="{x:Bind ViewModelInstance.PathCommand}">
                 <SymbolIcon Symbol="Folder"/>
             </Button>
+
+        </StackPanel>
+
+        <!-- Row 2 -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Text="Background image path: " Foreground="White" FontSize="15"
+                    Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                     Text="{x:Bind ViewModelInstance.Path, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+            <Button Margin="5,0,0,0" Command="{x:Bind ViewModelInstance.PathCommand}">
+                <SymbolIcon Symbol="Folder"/>
+            </Button>
+
+        </StackPanel>
+
+        <!-- Row 3 -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <CheckBox Margin="10,0,0,0" IsChecked="{x:Bind ViewModelInstance.IsAcrylic, Mode=TwoWay, UpdateSourceTrigger=LostFocus}">
+                <TextBlock Text="Acyilic effect" Foreground="White"/>
+            </CheckBox>
 
         </StackPanel>
 

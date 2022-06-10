@@ -37,7 +37,13 @@ namespace WinUI_Sample.Model
 
         public async Task CreateDefaultConfig()
         {
-            _configModel = new ConfigurationModel { BackgroundType = "Mica", BackgroundImagePath = "https://images.wallpaperscraft.com/image/single/bridge_sea_fog_304152_1280x720.jpg" };
+            _configModel = new ConfigurationModel
+            {
+                BackgroundType = "Mica",
+                BackgroundImagePath = "https://images.wallpaperscraft.com/image/single/bridge_sea_fog_304152_1280x720.jpg",
+                IsAcrylicActivated = true,
+                AcrylicStrength = 0.8,
+            };
             await _dataBaseService.Add(_configModel);
             App.GetService<MainWindow>().SetBackground(_configModel);
         }
@@ -51,6 +57,9 @@ namespace WinUI_Sample.Model
         public string GetBackgroundType() => _configModel.BackgroundType;
         public void SetBackgroundImagePath(string path) => _configModel.BackgroundImagePath = path;
         public string GetBackgroundImagePath() => _configModel.BackgroundImagePath;
+
+        public bool IsAcrylicActivated() => _configModel.IsAcrylicActivated;
+        public void SetAcrylicActivated(bool isActivated) => _configModel.IsAcrylicActivated = isActivated;
         public BitmapImage GetBitmapImage() => _configModel.BitmapImage;
         
     }

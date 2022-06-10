@@ -51,12 +51,12 @@ namespace WinUI_Sample
             {
                 _mica.ApplyMica();
                 blackgroundImage.Source = null;
-                acrylic.Opacity = 0;
+                acrylic.Visibility = Visibility.Collapsed;
             }
             else if(background.BackgroundType == "Static image")
             {
                 blackgroundImage.Source = background.BitmapImage;
-                acrylic.Opacity = 1;
+                acrylic.Visibility = background.IsAcrylicActivated ? Visibility.Visible : Visibility.Collapsed;
             }
 
         }
