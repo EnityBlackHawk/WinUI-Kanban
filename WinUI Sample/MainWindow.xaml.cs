@@ -32,15 +32,30 @@ namespace WinUI_Sample
             this.InitializeComponent();
             ViewModel = App.GetService<ViewModel.MainViewModel>();
             ViewManager = App.GetService<View.ViewManager>();
-            (rootGrid.Resources["Str2"] as Storyboard).Begin();
-            (rootGrid.Resources["Str1"] as Storyboard).Begin();
+            //(rootGrid.Resources["Str2"] as Storyboard).Begin();
+            //(rootGrid.Resources["Str1"] as Storyboard).Begin();
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(titleBar);
 
-            var mica = new Tools.Mica(this);
+
         }
 
+        public void SetBackground(Model.ConfigurationModel background)
+        {
 
+            if (background.BackgroundType == "Mica")
+            {
+                var mica = new Tools.Mica(this);
+                blackgroundImage.Source = null;
+                acrylic.Opacity = 0;
+            }
+            else if(background.BackgroundType == "Static image")
+            {
+                blackgroundImage.Source = background.BitmapImage;
+                acrylic.Opacity = 1;
+            }
+
+        }
     }
 }

@@ -59,7 +59,12 @@ namespace WinUI_Sample.Model
 
         public async Task<ICollection<T>> GetAsync<T>() where T:new()
         {
-            return await _connection.Table<T>().ToListAsync();
+            var t =  _connection.Table<T>();
+            if (t == null)
+            {
+                return null;
+            }
+            else return await t.ToListAsync();
         }
 
     }

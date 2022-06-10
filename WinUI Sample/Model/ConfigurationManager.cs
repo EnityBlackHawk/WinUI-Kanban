@@ -10,46 +10,46 @@ namespace WinUI_Sample.Model
     public class ConfigurationManager
     {
         private ConfigurationModel _configModel;
+        private DataBaseService _dataBaseService;
 
 
         public async Task Load()
         {
-            var connect = App.GetService<Model.DataBaseService>();
-            var lc = await connect.GetAsync<Model.ConfigurationModel>();
+            
+            _dataBaseService = App.GetService<Model.DataBaseService>();
+            var lc = await _dataBaseService.GetAsync<Model.ConfigurationModel>();
 
             if (lc.Count == 0)
             {
                 CreateDefaultConfig();
+                App.GetService<MainWindow>().SetBackground(_configModel);
                 return;
             }
             _configModel = lc.ElementAt(0);
-            
+            App.GetService<MainWindow>().SetBackground(_configModel);
         }
 
         public async Task Save()
         {
-            var connect = App.GetService<Model.DataBaseService>();
-            await connect.Update(_configModel);
+            await _dataBaseService.Update(_configModel);
+            App.GetService<MainWindow>().SetBackground(_configModel);
         }
 
         private async Task CreateDefaultConfig()
         {
-            _configModel = new ConfigurationModel { BackgroundType = "Mica" };
-            var connect = App.GetService<Model.DataBaseService>();
-            await connect.Add(_configModel);
+            _configModel = new ConfigurationModel { BackgroundType = "Mica", BackgroundImagePath = "C:\\Users\\luanf\\Desktop\\Untitled.png" };
+            await _dataBaseService.Add(_configModel);
         }
 
         public void Repair()
         {
-            var connect = App.GetService<Model.DataBaseService>();
-            connect.RemoveAll<Model.ConfigurationModel>();
+            _dataBaseService.RemoveAll<Model.ConfigurationModel>();
         }
 
         public void SetBackgroundType(string type) => _configModel.BackgroundType = type;
         public string GetBackgroundType() => _configModel.BackgroundType;
         public void SetBackgroundImagePath(string path) => _configModel.BackgroundImagePath = path;
         public string GetBackgroundImagePath() => _configModel.BackgroundImagePath;
-
         public BitmapImage GetBitmapImage() => _configModel.BitmapImage;
         
     }

@@ -25,7 +25,7 @@ namespace WinUI_Sample.ViewModel
 
         public ConfigurationViewModel()
         {
-            Backgrounds = new List<string> { "Mica", "Elipses", "Static image" };
+            Backgrounds = new List<string> { "Mica", "Static image" };
             _configurationManager = App.GetService<Model.ConfigurationManager>();
             SelectedBackground = _configurationManager.GetBackgroundType();
             SaveCommand = new ButtonCommand(save);

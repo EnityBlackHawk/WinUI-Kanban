@@ -15,25 +15,26 @@ namespace WinUI_Sample
 
         private static IHost _host = Host.CreateDefaultBuilder().ConfigureServices((context, services) =>
         {
+
+            services.AddSingleton<Model.DataBaseService>();
+            services.AddSingleton<Model.ConfigurationManager>();
+
+
             services.AddSingleton<ViewModel.MainViewModel>();
             services.AddSingleton<ViewModel.HomeViewModel>();
             services.AddSingleton<ViewModel.LoginViewModel>();
             services.AddSingleton<ViewModel.TableViewModel>();
             services.AddSingleton<ViewModel.ItemDetailViewModel>();
             services.AddSingleton<ViewModel.ConfigurationViewModel>();
-            
 
 
+            services.AddSingleton<MainWindow>();
             services.AddSingleton<View.HomeView>();
             services.AddSingleton<View.LoginView>();
             services.AddSingleton<View.ViewManager>();
             services.AddSingleton<View.TablesView>();
             services.AddSingleton<View.ItemDetailView>();
             services.AddSingleton<View.ConfigurationView>();
-
-            services.AddSingleton<Model.DataBaseService>();
-            services.AddSingleton<Model.ConfigurationManager>();
-        
         }).Build();
 
         public static T GetService<T>() where T : class => _host.Services.GetService(typeof(T)) as T;
@@ -56,7 +57,7 @@ namespace WinUI_Sample
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
+            m_window = GetService<MainWindow>();
             m_window.Activate();
         }
 

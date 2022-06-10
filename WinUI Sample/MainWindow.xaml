@@ -43,11 +43,13 @@
         </Grid.Resources>
         
         <!-- Title bar -->
-        <Grid x:Name="titleBar" Background="#7F000000">
+        <Grid x:Name="titleBar" Background="#7F000000" Canvas.ZIndex="5">
             <Border Background="Transparent" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
             <TextBlock Text="Kanban" FontSize="15" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Left"
                        Margin="10,0,0,0" Foreground="White"/>
         </Grid>
+
+        <Image Grid.RowSpan="2" Stretch="UniformToFill" x:Name="blackgroundImage"/>
 
         <Grid Margin="0,0,0,0" x:Name="elpGrid" Grid.Row="1" Visibility="Collapsed">
 
@@ -119,12 +121,15 @@
 
         </Grid>
 
+        <Border Grid.RowSpan="2" Opacity="0.7">
+            <Border.Background>
+                <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.1" TintColor="Black" 
+                              FallbackColor="#7F000000" Opacity="1" x:Name="acrylic"/>
+            </Border.Background>
+        </Border>
 
-        <Border Visibility="Visible" Grid.Row="1" Background="Transparent">
-            <!--<Border.Background>
-                <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.1" TintColor="White" 
-                              FallbackColor="#7F000000" Opacity="0.9"/>
-            </Border.Background>-->
+        <Border Visibility="Visible" Grid.Row="1" >
+            
 
             <Grid>
                 <Frame Content="{x:Bind ViewManager.FrameOneContent}" Canvas.ZIndex="{x:Bind ViewManager.FrameOneZindex}"
