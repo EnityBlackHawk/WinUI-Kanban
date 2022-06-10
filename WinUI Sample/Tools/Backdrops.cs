@@ -58,44 +58,43 @@ namespace Tools
         Microsoft.UI.Composition.SystemBackdrops.MicaController m_micaController;
         Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
 
-        private bool _isMicaSet;
-
-        public bool IsMicaSet
-        {
-            get { return _isMicaSet; }
-        }
 
         public Mica(Window window)
         {
-            _window = window;
 
             if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
             {
+                _window = window;
                 m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
                 m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
+                m_micaController = new Microsoft.UI.Composition.SystemBackdrops.MicaController();
 
                 // Hooking up the policy object
                 m_configurationSource = new Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration();
                 _window.Activated += Window_Activated;
                 _window.Closed += Window_Closed;
-                ((FrameworkElement)_window.Content).ActualThemeChanged += Window_ThemeChanged;
+                ((FrameworkElement)_window.Content).ActualThemeChanged += Window_ThemeChanged; 
+            }
+        }
 
+        public bool ApplyMica()
+        {
+            if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
+            {
                 // Initial configuration state.
                 m_configurationSource.IsInputActive = true;
                 SetConfigurationSourceTheme();
-
-                m_micaController = new Microsoft.UI.Composition.SystemBackdrops.MicaController();
 
                 // Enable the system backdrop.
                 // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
                 m_micaController.AddSystemBackdropTarget(_window.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
                 m_micaController.SetSystemBackdropConfiguration(m_configurationSource);
-                _isMicaSet = true; // succeeded
+                return true; // succeeded
             }
 
-            _isMicaSet = false; // Mica is not supported on this system
-
+            return false; // Mica is not supported on this system
         }
+
         private void Window_Activated(object sender, WindowActivatedEventArgs args)
         {
             m_configurationSource.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;

@@ -27,6 +27,8 @@ namespace WinUI_Sample
         public ViewModel.MainViewModel ViewModel { get; }
         public View.ViewManager ViewManager { get; }
 
+        private Tools.Mica _mica;
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -38,6 +40,7 @@ namespace WinUI_Sample
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(titleBar);
 
+            _mica = new Tools.Mica(this);
 
         }
 
@@ -46,7 +49,7 @@ namespace WinUI_Sample
 
             if (background.BackgroundType == "Mica")
             {
-                var mica = new Tools.Mica(this);
+                _mica.ApplyMica();
                 blackgroundImage.Source = null;
                 acrylic.Opacity = 0;
             }
