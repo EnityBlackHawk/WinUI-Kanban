@@ -37,7 +37,7 @@ namespace WinUI_Sample.Model
 
         public async Task CreateDefaultConfig()
         {
-            _configModel = new ConfigurationModel { BackgroundType = "Mica", BackgroundImagePath = "C:\\Users\\luanf\\Desktop\\Untitled.png" };
+            _configModel = new ConfigurationModel { BackgroundType = "Mica", BackgroundImagePath = "https://images.wallpaperscraft.com/image/single/bridge_sea_fog_304152_1280x720.jpg" };
             await _dataBaseService.Add(_configModel);
             App.GetService<MainWindow>().SetBackground(_configModel);
         }

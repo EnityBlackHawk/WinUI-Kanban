@@ -12,6 +12,8 @@
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <PackageId>Kanban WinUI</PackageId>
     <Product>Kanban WinUI</Product>
+    <PackageCertificateThumbprint>362F4D3B84E01C3F458F9D648A29ED9007249979</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="View\ConfigurationView.xaml" />

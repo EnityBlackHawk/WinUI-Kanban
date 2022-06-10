@@ -21,6 +21,15 @@ namespace WinUI_Sample.ViewModel
             set { _selectedBackground = value; OnPropertyChanged(); }
         }
 
+        private string _path;
+
+        public string Path
+        {
+            get { return _path; }
+            set { _path = value; OnPropertyChanged(); }
+        }
+
+
         private Model.ConfigurationManager _configurationManager;
 
         public ConfigurationViewModel()
@@ -28,12 +37,14 @@ namespace WinUI_Sample.ViewModel
             Backgrounds = new List<string> { "Mica", "Static image" };
             _configurationManager = App.GetService<Model.ConfigurationManager>();
             SelectedBackground = _configurationManager.GetBackgroundType();
+            Path = _configurationManager.GetBackgroundImagePath();
             SaveCommand = new ButtonCommand(save);
         }
 
         private void save()
         {
-            _configurationManager.SetBackgroundType(_selectedBackground);
+            _configurationManager.SetBackgroundType(SelectedBackground);
+            _configurationManager.SetBackgroundImagePath(Path);
             _configurationManager.Save();
             App.GetService<View.ViewManager>().Navegate(App.GetService<View.TablesView>());
         }

@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -31,8 +32,17 @@
             </ComboBox>
         
         </StackPanel>
-        
+
         <!-- Row 2 -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Text="Background image path: " Foreground="White" FontSize="15"
+                    Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                     Text="{x:Bind ViewModelInstance.Path, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+
+        </StackPanel>
+
+        <!-- Row 10 -->
         <Button Content="Save" Grid.Row="10" Margin="10,0,0,10" Command="{x:Bind ViewModelInstance.SaveCommand}"/>
 
     </Grid>

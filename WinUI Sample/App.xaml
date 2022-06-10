@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WinUI_Sample"
     xmlns:ViewModel="using:WinUI_Sample.ViewModel"
-    xmlns:View="using:WinUI_Sample.View">
+    xmlns:View="using:WinUI_Sample.View"
+    RequestedTheme="Dark">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

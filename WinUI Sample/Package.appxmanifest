@@ -9,10 +9,10 @@
   <Identity
     Name="736c13bb-2acd-4f0b-8655-cea890e44dc4"
     Publisher="CN=luanf"
-    Version="1.0.0.0" />
+    Version="0.1.0.0" />
 
   <Properties>
-    <DisplayName>WinUI Sample</DisplayName>
+    <DisplayName>Kanban WinUI</DisplayName>
     <PublisherDisplayName>luanf</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
