@@ -22,11 +22,11 @@ namespace WinUI_Sample.Model
             if (lc.Count == 0)
             {
                 CreateDefaultConfig();
-                App.GetService<MainWindow>().SetBackground(_configModel);
                 return;
             }
             _configModel = lc.ElementAt(0);
             App.GetService<MainWindow>().SetBackground(_configModel);
+
         }
 
         public async Task Save()
@@ -35,10 +35,11 @@ namespace WinUI_Sample.Model
             App.GetService<MainWindow>().SetBackground(_configModel);
         }
 
-        private async Task CreateDefaultConfig()
+        public async Task CreateDefaultConfig()
         {
             _configModel = new ConfigurationModel { BackgroundType = "Mica", BackgroundImagePath = "C:\\Users\\luanf\\Desktop\\Untitled.png" };
             await _dataBaseService.Add(_configModel);
+            App.GetService<MainWindow>().SetBackground(_configModel);
         }
 
         public void Repair()

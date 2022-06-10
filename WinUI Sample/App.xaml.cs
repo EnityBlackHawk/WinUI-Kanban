@@ -46,8 +46,9 @@ namespace WinUI_Sample
         public App()
         {
             this.InitializeComponent();
-            var c = GetService<Model.ConfigurationManager>();
-            c.Load();
+            GetService<Model.DataBaseService>();
+            GetService<Model.ConfigurationManager>().Load();
+
         }
 
         /// <summary>

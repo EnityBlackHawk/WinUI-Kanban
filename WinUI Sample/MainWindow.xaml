@@ -43,7 +43,7 @@
         </Grid.Resources>
         
         <!-- Title bar -->
-        <Grid x:Name="titleBar" Background="#7F000000" Canvas.ZIndex="5">
+        <Grid x:Name="titleBar" Background="#00000000" Canvas.ZIndex="5">
             <Border Background="Transparent" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
             <TextBlock Text="Kanban" FontSize="15" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Left"
                        Margin="10,0,0,0" Foreground="White"/>
@@ -121,7 +121,7 @@
 
         </Grid>
 
-        <Border Grid.RowSpan="2" Opacity="0.7">
+        <Border Grid.RowSpan="2" Opacity="0.8">
             <Border.Background>
                 <AcrylicBrush TintOpacity="0" TintLuminosityOpacity="0.1" TintColor="Black" 
                               FallbackColor="#7F000000" Opacity="1" x:Name="acrylic"/>
