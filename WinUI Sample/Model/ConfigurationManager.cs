@@ -39,8 +39,8 @@ namespace WinUI_Sample.Model
         {
             _configModel = new ConfigurationModel
             {
-                BackgroundType = "Mica",
-                BackgroundImagePath = "https://images.wallpaperscraft.com/image/single/bridge_sea_fog_304152_1280x720.jpg",
+                BackgroundType = "Static image",
+                BackgroundImagePath = "https://images.wallpaperscraft.com/image/single/bridge_sea_fog_304152_1920x1080.jpg",
                 IsAcrylicActivated = true,
                 AcrylicStrength = 0.8,
             };

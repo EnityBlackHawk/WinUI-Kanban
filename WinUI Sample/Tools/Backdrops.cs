@@ -77,6 +77,9 @@ namespace Tools
             }
         }
 
+        public static bool IsSupported() => Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported();
+        
+
         public bool ApplyMica()
         {
             if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())

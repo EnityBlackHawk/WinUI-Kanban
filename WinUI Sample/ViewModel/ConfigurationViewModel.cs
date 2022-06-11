@@ -10,7 +10,6 @@ namespace WinUI_Sample.ViewModel
     public class ConfigurationViewModel : NewObservableObject
     {
         public List<string> Backgrounds { get; set; }
-
         public AsyncCommand SaveCommand { get; set; }
         public ButtonCommand PathCommand { get; set; }
 
@@ -38,6 +37,14 @@ namespace WinUI_Sample.ViewModel
             set { _isAcrylic = value; OnPropertyChanged(); }
         }
 
+        private bool _isMicaAvalible;
+
+        public bool IsMicaAvalible
+        {
+            get { return _isMicaAvalible; }
+            set { _isMicaAvalible = value; OnPropertyChanged(); }
+        }
+
 
         private Model.ConfigurationManager _configurationManager;
 
@@ -50,6 +57,9 @@ namespace WinUI_Sample.ViewModel
             IsAcrylic = _configurationManager.IsAcrylicActivated();
             SaveCommand = new AsyncCommand(save);
             PathCommand = new ButtonCommand(GetPath);
+
+            IsMicaAvalible = Mica.IsSupported();
+            if (!IsMicaAvalible) Backgrounds.RemoveAt(0);
         }
 
         private async Task save()
@@ -59,7 +69,6 @@ namespace WinUI_Sample.ViewModel
                 _configurationManager.SetBackgroundType(SelectedBackground);
                 _configurationManager.SetBackgroundImagePath(Path);
                 _configurationManager.SetAcrylicActivated(IsAcrylic);
-                
 
             });
             await _configurationManager.Save();

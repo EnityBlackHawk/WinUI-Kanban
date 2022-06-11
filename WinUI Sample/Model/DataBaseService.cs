@@ -26,8 +26,7 @@ namespace WinUI_Sample.Model
             var e = await _connection.CreateTableAsync<Model.ConfigurationModel>();
             
             if(e == CreateTableResult.Created)
-            await App.GetService<Model.ConfigurationManager>().CreateDefaultConfig();
-            
+            await App.GetService<Model.ConfigurationManager>().CreateDefaultConfig(); 
         }
 
         public DataBaseService()

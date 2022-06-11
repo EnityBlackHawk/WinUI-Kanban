@@ -51,7 +51,7 @@
 
         <Image Grid.RowSpan="2" Stretch="UniformToFill" x:Name="blackgroundImage"/>
 
-        <Grid Margin="0,0,0,0" x:Name="elpGrid" Grid.Row="1" Visibility="Collapsed">
+        <!--<Grid Margin="0,0,0,0" x:Name="elpGrid" Grid.Row="1" Visibility="Collapsed">
 
             <Grid.Projection>
                 <PlaneProjection/>
@@ -119,7 +119,7 @@
                 </Ellipse.Stroke>
             </Ellipse>
 
-        </Grid>
+        </Grid>-->
 
         <Border Grid.RowSpan="2" Opacity="0.8" x:Name="acrylic">
             <Border.Background>

@@ -5,8 +5,13 @@
     xmlns:local="using:WinUI_Sample.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:WinUI_Sample.Converters"
     mc:Ignorable="d"
     Background="Transparent">
+
+    <Page.Resources>
+        <converter:NotBoolToVisibilityConverter x:Key="NotBoolToVisibility"/>
+    </Page.Resources>
 
     <Grid RowSpacing="10" Margin="5">
         <Grid.RowDefinitions>
@@ -31,18 +36,9 @@
                       SelectedItem="{x:Bind ViewModelInstance.SelectedBackground, Mode=TwoWay, UpdateSourceTrigger=LostFocus}">
 
             </ComboBox>
-        
-        </StackPanel>
-
-        <!-- Row 2 -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <TextBlock Text="Background image path: " Foreground="White" FontSize="15"
-                    Margin="10,0,0,0" VerticalAlignment="Center"/>
-            <TextBox Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"
-                     Text="{x:Bind ViewModelInstance.Path, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
-            <Button Margin="5,0,0,0" Command="{x:Bind ViewModelInstance.PathCommand}">
-                <SymbolIcon Symbol="Folder"/>
-            </Button>
+            <TextBlock Text="Mica is not supported on this device!" Margin="10,0,0,0" Foreground="Red" FontSize="12"
+                       VerticalAlignment="Center"
+                       Visibility="{x:Bind ViewModelInstance.IsMicaAvalible, Converter={StaticResource NotBoolToVisibility}}"/>
 
         </StackPanel>
 
@@ -53,7 +49,7 @@
             <TextBox Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"
                      Text="{x:Bind ViewModelInstance.Path, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
             <Button Margin="5,0,0,0" Command="{x:Bind ViewModelInstance.PathCommand}">
-                <SymbolIcon Symbol="Folder"/>
+                <SymbolIcon Symbol="OpenFile"/>
             </Button>
 
         </StackPanel>

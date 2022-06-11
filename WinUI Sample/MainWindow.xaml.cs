@@ -49,7 +49,10 @@ namespace WinUI_Sample
 
             if (background.BackgroundType == "Mica")
             {
-                _mica.ApplyMica();
+                var b = _mica.ApplyMica();
+
+                if(!b) return;
+
                 blackgroundImage.Source = null;
                 acrylic.Visibility = Visibility.Collapsed;
             }
@@ -58,7 +61,16 @@ namespace WinUI_Sample
                 blackgroundImage.Source = background.BitmapImage;
                 acrylic.Visibility = background.IsAcrylicActivated ? Visibility.Visible : Visibility.Collapsed;
             }
+        }
 
+        public async void CreateContentDialog()
+        {
+            ContentDialog contentDialog = new ContentDialog();
+            contentDialog.XamlRoot = this.Content.XamlRoot;
+            contentDialog.DefaultButton = ContentDialogButton.Primary;
+            contentDialog.IsSecondaryButtonEnabled = false;
+            contentDialog.IsPrimaryButtonEnabled = false;
+            var result = await contentDialog.ShowAsync();
         }
     }
 }
