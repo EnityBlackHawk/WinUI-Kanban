@@ -44,10 +44,11 @@ namespace WinUI_Sample
 
         }
 
-        public void SetBackground(Model.ConfigurationModel background)
+        public void SetBackground()
         {
+            var configManager = App.GetService<Model.ConfigurationManager>();
 
-            if (background.BackgroundType == "Mica")
+            if (configManager.GetBackgroundType() == "Mica")
             {
                 var b = _mica.ApplyMica();
 
@@ -56,10 +57,10 @@ namespace WinUI_Sample
                 blackgroundImage.Source = null;
                 acrylic.Visibility = Visibility.Collapsed;
             }
-            else if(background.BackgroundType == "Static image")
+            else if(configManager.GetBackgroundType() == "Static image")
             {
-                blackgroundImage.Source = background.BitmapImage;
-                acrylic.Visibility = background.IsAcrylicActivated ? Visibility.Visible : Visibility.Collapsed;
+                blackgroundImage.Source = configManager.GetBitmapImage();
+                acrylic.Visibility = configManager.IsAcrylicActivated() ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 

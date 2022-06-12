@@ -13,6 +13,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using Tools;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,6 +36,16 @@ namespace WinUI_Sample.View
         private void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
         {
             ViewModelInstance.Color = sender.Color;
+            if(sender.Color.IsABrightColor())
+            {
+                tileBox.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+                messageBox.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+            }
+            else
+            {
+                tileBox.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+                messageBox.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

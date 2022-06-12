@@ -21,18 +21,18 @@ namespace WinUI_Sample.Model
 
             if (lc.Count == 0)
             {
-                CreateDefaultConfig();
+                await CreateDefaultConfig();
                 return;
             }
             _configModel = lc.ElementAt(0);
-            App.GetService<MainWindow>().SetBackground(_configModel);
+            App.GetService<MainWindow>().SetBackground();
 
         }
 
         public async Task Save()
         {
             await _dataBaseService.Update(_configModel);
-            App.GetService<MainWindow>().SetBackground(_configModel);
+            App.GetService<MainWindow>().SetBackground();
         }
 
         public async Task CreateDefaultConfig()
@@ -45,12 +45,12 @@ namespace WinUI_Sample.Model
                 AcrylicStrength = 0.8,
             };
             await _dataBaseService.Add(_configModel);
-            App.GetService<MainWindow>().SetBackground(_configModel);
+            App.GetService<MainWindow>().SetBackground();
         }
 
-        public void Repair()
+        public async Task Repair()
         {
-            _dataBaseService.RemoveAll<Model.ConfigurationModel>();
+            await _dataBaseService.RemoveAll<Model.ConfigurationModel>();
         }
 
         public void SetBackgroundType(string type) => _configModel.BackgroundType = type;
