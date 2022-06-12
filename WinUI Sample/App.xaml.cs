@@ -22,7 +22,6 @@ namespace WinUI_Sample
 
             services.AddSingleton<ViewModel.MainViewModel>();
             services.AddSingleton<ViewModel.HomeViewModel>();
-            services.AddSingleton<ViewModel.LoginViewModel>();
             services.AddSingleton<ViewModel.TableViewModel>();
             services.AddSingleton<ViewModel.ItemDetailViewModel>();
             services.AddSingleton<ViewModel.ConfigurationViewModel>();
@@ -30,7 +29,6 @@ namespace WinUI_Sample
 
             services.AddSingleton<MainWindow>();
             services.AddSingleton<View.HomeView>();
-            services.AddSingleton<View.LoginView>();
             services.AddSingleton<View.ViewManager>();
             services.AddSingleton<View.TablesView>();
             services.AddSingleton<View.ItemDetailView>();
@@ -46,8 +44,8 @@ namespace WinUI_Sample
         public App()
         {
             this.InitializeComponent();
-            GetService<Model.DataBaseService>();
             GetService<Model.ConfigurationManager>().Load();
+            _host.Start();
 
         }
 

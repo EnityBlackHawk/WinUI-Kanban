@@ -19,7 +19,6 @@
     <None Remove="View\ConfigurationView.xaml" />
     <None Remove="View\HomeView.xaml" />
     <None Remove="View\ItemDetailView.xaml" />
-    <None Remove="View\LoginView.xaml" />
     <None Remove="View\TablesView.xaml" />
   </ItemGroup>
 
@@ -46,11 +45,6 @@
        package has not yet been restored -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="View\LoginView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\HomeView.xaml">

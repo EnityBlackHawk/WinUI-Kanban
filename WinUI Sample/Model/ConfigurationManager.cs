@@ -12,7 +12,6 @@ namespace WinUI_Sample.Model
         private ConfigurationModel _configModel;
         private DataBaseService _dataBaseService;
 
-
         public async Task Load()
         {
             
