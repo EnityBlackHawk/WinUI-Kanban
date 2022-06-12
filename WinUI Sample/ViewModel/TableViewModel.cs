@@ -89,7 +89,41 @@ namespace WinUI_Sample.ViewModel
             }
 
             await _dataBase.Update(item);
-            
+        }
+        public async Task ChangeItemListIndex(ItemModel item, string sourceName, string targetName, int index)
+        {
+            if (sourceName == targetName) return;
+
+            if (sourceName == "ToDoList")
+            {
+                ToDoList.Remove(item);
+            }
+            else if (sourceName == "InProgressList")
+            {
+                InProgressList.Remove(item);
+            }
+            else if (sourceName == "DoneList")
+            {
+                DoneList.Remove(item);
+            }
+
+            if (targetName == "ToDoList")
+            {
+                item.Table = 0;
+                ToDoList.Insert(index, item);
+            }
+            else if (targetName == "InProgressList")
+            {
+                item.Table = 1;
+                InProgressList.Insert(index, item);
+            }
+            else if (targetName == "DoneList")
+            {
+                item.Table = 2;
+                DoneList.Insert(index, item);
+            }
+
+            await _dataBase.Update(item);
         }
 
         public void NewItem()
