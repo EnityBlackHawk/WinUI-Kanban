@@ -41,12 +41,11 @@ namespace WinUI_Sample.View
 
             Windows.Foundation.Point pos = e.GetPosition(lv.ItemsPanelRoot);
 
-            int index = 0;
             if(lv.Items.Count != 0)
             {
                 ListViewItem lvi = (ListViewItem)lv.ContainerFromIndex(0);
                 double itemHeight = lvi.ActualHeight + lvi.Margin.Top + lvi.Margin.Bottom;
-                index = Math.Min(lv.Items.Count - 1, (int)(pos.Y / itemHeight));
+                int index = Math.Min(lv.Items.Count - 1, (int)(pos.Y / itemHeight));
 
                 await ViewModelInstance.ChangeItemListIndex(_itemModel, _sourceName, lv.Name, index);
             }

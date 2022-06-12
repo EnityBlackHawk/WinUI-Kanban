@@ -62,16 +62,7 @@ namespace WinUI_Sample
                 blackgroundImage.Source = configManager.GetBitmapImage();
                 acrylic.Visibility = configManager.IsAcrylicActivated() ? Visibility.Visible : Visibility.Collapsed;
             }
-        }
 
-        public async void CreateContentDialog()
-        {
-            ContentDialog contentDialog = new ContentDialog();
-            contentDialog.XamlRoot = this.Content.XamlRoot;
-            contentDialog.DefaultButton = ContentDialogButton.Primary;
-            contentDialog.IsSecondaryButtonEnabled = false;
-            contentDialog.IsPrimaryButtonEnabled = false;
-            var result = await contentDialog.ShowAsync();
         }
     }
 }
