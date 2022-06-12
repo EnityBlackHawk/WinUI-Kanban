@@ -15,12 +15,14 @@
         <convertes:ColorToSolidColorBrushConverter x:Key="ColorToBrush"/>
 
         <DataTemplate x:Key="dt" x:DataType="Model:ItemModel">
-            <StackPanel  CornerRadius="5" Margin="0,0,0,10"
-                        MinHeight="150" Background="{x:Bind Color, Converter={StaticResource ColorToBrush}}" Padding="5,10,5,10" HorizontalAlignment="Stretch">
-                <TextBlock Text="{x:Bind Title}" FontSize="20" FontWeight="Bold" Margin="10,0,0,0"
+            <StackPanel  CornerRadius="5" Margin="0,0,0,0"
+                        MinHeight="150" Background="{x:Bind Color, Converter={StaticResource ColorToBrush}}" 
+                         Padding="5,10,5,10" HorizontalAlignment="Stretch" x:Name="rootPanel">
+                <TextBlock Text="{x:Bind Title}" FontSize="20" FontWeight="Bold" Margin="10,0,0,10"
                            Foreground="{x:Bind TextColor, Converter={StaticResource ColorToBrush}}" FontFamily="Segou UI"/>
                 <TextBlock Text="{x:Bind Message}" FontSize="15" FontWeight="Normal" TextWrapping="WrapWholeWords"
-                           Foreground="{x:Bind TextColor, Converter={StaticResource ColorToBrush}}" Margin="10,10,0,0" FontFamily="Segou UI" VerticalAlignment="Stretch"/>
+                           Foreground="{x:Bind TextColor, Converter={StaticResource ColorToBrush}}" Margin="10,10,10,0" FontFamily="Segou UI" VerticalAlignment="Stretch"/>
+
             </StackPanel>
         </DataTemplate>
         
@@ -46,11 +48,26 @@
             <TextBlock Text="To Do" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Margin="10"/>
             
-            <ListView Grid.Column="0" Grid.Row="1" x:Name="ToDoList" ScrollViewer.VerticalScrollMode="Enabled" Padding="5" CornerRadius="5"
+            <ListView Grid.Column="0" Grid.Row="1" x:Name="ToDoList" ScrollViewer.VerticalScrollMode="Enabled" Padding="0,5,5,5" Margin="5,0,0,0"
+                      CornerRadius="5"
                     DragOver="ListView_DragOver" Drop="ListView_Drop" SelectionMode="None" DragLeave="ListView_DragLeave" DragItemsCompleted="ListView_DragItemsCompleted"
                     DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" Background="#00000000"
                     CanDragItems="True" CanReorderItems="True" AllowDrop="True" ItemClick="ToDoList_ItemClick" IsItemClickEnabled="True"
                     ItemsSource="{x:Bind ViewModelInstance.ToDoList, Mode=TwoWay}" ItemTemplate="{StaticResource dt}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <ListViewItemPresenter 
+                                        PointerOverBackground="#AFFFFFFF"
+                                        ContentMargin="5">
+                                    </ListViewItemPresenter>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
 
                 <ListView.Resources>
                     <Storyboard x:Key="an_On">
@@ -74,7 +91,23 @@
                       DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" DragLeave="ListView_DragLeave" DragItemsCompleted="ListView_DragItemsCompleted"
                       CanDragItems="True" CanReorderItems="True" AllowDrop="True" ItemClick="ToDoList_ItemClick" IsItemClickEnabled="True"
                       ItemsSource="{x:Bind ViewModelInstance.InProgressList, Mode=TwoWay}" ItemTemplate="{StaticResource dt}">
-
+                
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <ListViewItemPresenter 
+                                        PointerOverBackground="#AFFFFFFF"
+                                        ContentMargin="5">
+                                    </ListViewItemPresenter>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                
+                
                 <ListView.Resources>
                     <Storyboard x:Key="an_On">
                         <ColorAnimation Storyboard.TargetName="InProgressList" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
@@ -91,12 +124,28 @@
             <!-- Column 2 -->
             <TextBlock Text="Done" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Grid.Column="2" Margin="10"/>
-            <ListView Grid.Column="2" Grid.Row="1" x:Name="DoneList" SelectionMode="None" Padding="5" CornerRadius="5"
-                      DragOver="ListView_DragOver" Drop="ListView_Drop" Background="#00000000"
+            <ListView Grid.Column="2" Grid.Row="1" x:Name="DoneList" SelectionMode="None" Padding="5,5,0,5" CornerRadius="5"
+                      DragOver="ListView_DragOver" Drop="ListView_Drop" Background="#00000000" Margin="0,0,5,0"
                       DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" DragLeave="ListView_DragLeave" DragItemsCompleted="ListView_DragItemsCompleted"
                       CanDragItems="True" CanReorderItems="True" AllowDrop="True" ItemClick="ToDoList_ItemClick" IsItemClickEnabled="True"
                       ItemsSource="{x:Bind ViewModelInstance.DoneList, Mode=TwoWay}" ItemTemplate="{StaticResource dt}">
-
+                
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <ListViewItemPresenter 
+                                        PointerOverBackground="#AFFFFFFF"
+                                        ContentMargin="5">
+                                    </ListViewItemPresenter>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                
+                
                 <ListView.Resources>
                     <Storyboard x:Key="an_On">
                         <ColorAnimation Storyboard.TargetName="DoneList" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
