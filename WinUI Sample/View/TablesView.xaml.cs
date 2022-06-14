@@ -37,24 +37,25 @@ namespace WinUI_Sample.View
 
         private async void ListView_Drop(object sender, DragEventArgs e)
         {
+            
             ListView lv = sender as ListView;
-
-            Windows.Foundation.Point pos = e.GetPosition(lv.ItemsPanelRoot);
-
-            if(lv.Items.Count != 0)
+            (lv.Resources["an_Off"] as Storyboard).Begin();
+            
+            if (lv.Items.Count != 0)
             {
                 ListViewItem lvi = (ListViewItem)lv.ContainerFromIndex(0);
+                var positionInItem = e.GetPosition(lv);
                 double itemHeight = lvi.ActualHeight + lvi.Margin.Top + lvi.Margin.Bottom;
-                int index = Math.Min(lv.Items.Count - 1, (int)(pos.Y / itemHeight));
+                int index = (int)(positionInItem.Y / itemHeight);
 
-                await ViewModelInstance.ChangeItemListIndex(_itemModel, _sourceName, lv.Name, index);
+                if (positionInItem.Y < itemHeight * Math.Max(index, 1) && positionInItem.Y > itemHeight / 2) index++;
+
+                await ViewModelInstance.ChangeItemListIndex(_itemModel, _sourceName, lv.Name, Math.Min(index, lv.Items.Count));
             }
             else
             {
                 await ViewModelInstance.ChangeItemList(_itemModel, _sourceName, lv.Name);
             }
-            (lv.Resources["an_Off"] as Storyboard).Begin();
-
         }
 
         private void ListView_DragOver(object sender, DragEventArgs e)
