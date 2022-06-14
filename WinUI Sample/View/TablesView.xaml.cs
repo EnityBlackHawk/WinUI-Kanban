@@ -39,7 +39,6 @@ namespace WinUI_Sample.View
         {
             
             ListView lv = sender as ListView;
-            (lv.Resources["an_Off"] as Storyboard).Begin();
             
             if (lv.Items.Count != 0)
             {
@@ -56,6 +55,7 @@ namespace WinUI_Sample.View
             {
                 await ViewModelInstance.ChangeItemList(_itemModel, _sourceName, lv.Name);
             }
+            (lv.Resources["an_Off"] as Storyboard).Begin();
         }
 
         private void ListView_DragOver(object sender, DragEventArgs e)
