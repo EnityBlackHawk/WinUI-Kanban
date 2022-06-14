@@ -52,13 +52,18 @@ namespace WinUI_Sample
             {
                 var b = _mica.ApplyMica();
 
-                if(!b) return;
+                if(!b)
+                {
+                    _mica.Remove();
+                    return;
+                }
 
                 blackgroundImage.Source = null;
                 acrylic.Visibility = Visibility.Collapsed;
             }
             else if(configManager.GetBackgroundType() == "Static image")
             {
+                //_mica.Remove();
                 blackgroundImage.Source = configManager.GetBitmapImage();
                 acrylic.Visibility = configManager.IsAcrylicActivated() ? Visibility.Visible : Visibility.Collapsed;
             }

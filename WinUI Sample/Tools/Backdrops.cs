@@ -67,7 +67,6 @@ namespace Tools
                 _window = window;
                 m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
                 m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
-                m_micaController = new Microsoft.UI.Composition.SystemBackdrops.MicaController();
 
                 // Hooking up the policy object
                 m_configurationSource = new Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration();
@@ -79,11 +78,17 @@ namespace Tools
 
         public static bool IsSupported() => Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported();
         
-
+        public void Remove()
+        {
+            m_micaController?.RemoveAllSystemBackdropTargets();
+            m_micaController?.Dispose();
+            m_micaController = null;
+        }
         public bool ApplyMica()
         {
             if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
             {
+                m_micaController ??= new Microsoft.UI.Composition.SystemBackdrops.MicaController();
                 // Initial configuration state.
                 m_configurationSource.IsInputActive = true;
                 SetConfigurationSourceTheme();
