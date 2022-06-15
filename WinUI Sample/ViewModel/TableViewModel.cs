@@ -36,6 +36,7 @@ namespace WinUI_Sample.ViewModel
             NewCommand = new Tools.ButtonCommand(NewItem);
             ConfigCommand = new Tools.ButtonCommand(() =>
             {
+                App.GetService<ViewModel.ConfigurationViewModel>().Load();
                 App.GetService<View.ViewManager>().Navegate(App.GetService<View.ConfigurationView>());
             });
 

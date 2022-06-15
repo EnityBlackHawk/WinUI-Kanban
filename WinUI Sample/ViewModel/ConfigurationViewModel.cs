@@ -13,6 +13,8 @@ namespace WinUI_Sample.ViewModel
         public AsyncCommand SaveCommand { get; set; }
         public ButtonCommand PathCommand { get; set; }
 
+        public ButtonCommand CancelCommand { get; set; }
+
         private string _selectedBackground;
 
         public string SelectedBackground
@@ -52,11 +54,12 @@ namespace WinUI_Sample.ViewModel
         {
             Backgrounds = new List<string> { "Mica", "Static image" };
             _configurationManager = App.GetService<Model.ConfigurationManager>();
-            SelectedBackground = _configurationManager.GetBackgroundType();
-            Path = _configurationManager.GetBackgroundImagePath();
-            IsAcrylic = _configurationManager.IsAcrylicActivated();
+            
             SaveCommand = new AsyncCommand(save);
             PathCommand = new ButtonCommand(GetPath);
+            CancelCommand = new ButtonCommand(Cancel);
+
+            Load();
 
             IsMicaAvalible = Mica.IsSupported();
             if (!IsMicaAvalible) Backgrounds.RemoveAt(0);
@@ -90,6 +93,18 @@ namespace WinUI_Sample.ViewModel
 
             Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
             Path = file != null ? file.Path : Path;
+        }
+
+        private void Cancel()
+        {
+            App.GetService<View.ViewManager>().Navegate(App.GetService<View.TablesView>());
+        }
+
+        public void Load()
+        {
+            SelectedBackground = _configurationManager.GetBackgroundType();
+            Path = _configurationManager.GetBackgroundImagePath();
+            IsAcrylic = _configurationManager.IsAcrylicActivated();
         }
     }
 }

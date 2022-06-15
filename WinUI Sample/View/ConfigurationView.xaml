@@ -63,7 +63,10 @@
         </StackPanel>
 
         <!-- Row 10 -->
-        <Button Content="Save" Grid.Row="10" Margin="10,0,0,10" Command="{x:Bind ViewModelInstance.SaveCommand}"/>
+        <StackPanel Grid.Row="10" Margin="10,0,0,10" Orientation="Horizontal">
+            <Button Content="Save" Command="{x:Bind ViewModelInstance.SaveCommand}"/>
+            <Button Content="Cancel" Margin="10,0,0,0" Command="{x:Bind ViewModelInstance.CancelCommand}"/>
+        </StackPanel>
 
     </Grid>
 </Page>
