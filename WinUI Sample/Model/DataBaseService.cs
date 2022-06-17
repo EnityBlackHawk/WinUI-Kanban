@@ -16,8 +16,9 @@ namespace WinUI_Sample.Model
         private async Task Init()
         {
             if (_connection != null) return;
-            var dataBasePath = Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
-            dataBasePath += "\\DataBase.db";
+            //var dataBasePath = Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
+            //dataBasePath += "\\DataBase.db";
+            string dataBasePath = "DataBase.db";
             System.Diagnostics.Debug.WriteLine(dataBasePath);
 
             _connection = new SQLiteAsyncConnection(dataBasePath);
