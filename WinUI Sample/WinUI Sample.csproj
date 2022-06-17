@@ -47,6 +47,9 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="View\HomeView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

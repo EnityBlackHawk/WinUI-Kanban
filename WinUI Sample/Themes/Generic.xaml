@@ -1,0 +1,64 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUI_Sample"
+    xmlns:local2="using:WinUI_Sample.CustomControls">
+
+    <Style TargetType="local2:CircleBackground" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local2:CircleBackground">
+                    <Grid>
+                        <Canvas x:Name="canvas1" Height="300" Width="300" Margin="-150"
+                                VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Canvas.Resources>
+                                <BeginStoryboard x:Key="rotation">
+                                    <Storyboard RepeatBehavior="Forever" >
+                                        <DoubleAnimation Storyboard.TargetName="canvas1" Storyboard.TargetProperty="(Control.Projection).(PlaneProjection.RotationZ)"
+                                                     To="360" Duration="0:0:3.5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Canvas.Resources>
+
+                            <Canvas.Projection>
+                                <PlaneProjection RotationZ="0"/>
+                            </Canvas.Projection>
+
+                            <Ellipse Stroke="{TemplateBinding Color1}" StrokeThickness="5" Height="300" Width="300"/>
+                            <Ellipse Fill="{TemplateBinding Color1}" Height="35" Width="35" Canvas.Left="35" Canvas.Top="18"/>
+
+                            <Ellipse Stroke="{TemplateBinding Color2}" StrokeThickness="5" Height="254" Width="254"
+                                     Canvas.Left="23" Canvas.Top="23"/>
+                            <Ellipse Fill="{TemplateBinding Color2}" Height="35" Width="35" Canvas.Left="210" Canvas.Top="225"/>
+
+                        </Canvas>
+
+                        <Canvas x:Name="canvas2" Height="600" Width="600" Margin="-300"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <Canvas.Resources>
+                                <BeginStoryboard x:Key="rotation">
+                                    <Storyboard RepeatBehavior="Forever">
+                                        <DoubleAnimation Storyboard.TargetName="canvas2" Storyboard.TargetProperty="(Control.Projection).(PlaneProjection.RotationZ)"
+                                                     To="360" Duration="0:0:3.5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Canvas.Resources>
+
+                            <Canvas.Projection>
+                                <PlaneProjection RotationZ="0"/>
+                            </Canvas.Projection>
+
+                            <Ellipse Stroke="{TemplateBinding Color1}" StrokeThickness="5" Height="600" Width="600"/>
+                            <Ellipse Fill="{TemplateBinding Color1}" Height="35" Width="35" Canvas.Left="70" Canvas.Top="75"/>
+
+                            <Ellipse Stroke="{TemplateBinding Color2}" StrokeThickness="5" Height="508" Width="508"
+                                     Canvas.Left="46" Canvas.Top="46"/>
+                            <Ellipse Fill="{TemplateBinding Color2}" Height="35" Width="35" Canvas.Left="525" Canvas.Top="225"/>
+
+                        </Canvas>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

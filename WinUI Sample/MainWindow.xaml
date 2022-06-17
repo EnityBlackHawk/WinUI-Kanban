@@ -6,6 +6,7 @@
     xmlns:mucx="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:WinUI_Sample.CustomControls"
     mc:Ignorable="d"
     x:DefaultBindMode="OneWay">
 
@@ -51,75 +52,10 @@
 
         <Image Grid.RowSpan="2" Stretch="UniformToFill" x:Name="blackgroundImage"/>
 
-        <!--<Grid Margin="0,0,0,0" x:Name="elpGrid" Grid.Row="1" Visibility="Collapsed">
-
-            <Grid.Projection>
-                <PlaneProjection/>
-            </Grid.Projection>
-
-            <Ellipse StrokeThickness="10" VerticalAlignment="Center" 
-                     HorizontalAlignment="Center" x:Name="elp1" Height="500" Width="500" RenderTransformOrigin="0.5,0.5">
-                <Ellipse.RenderTransform>
-                    <CompositeTransform Rotation="-29.984"/>
-                </Ellipse.RenderTransform>
-
-                <Ellipse.Projection>
-                    <PlaneProjection RotationX="45" RotationY="45"/>
-                </Ellipse.Projection>
-
-                <Ellipse.Stroke>
-                    <LinearGradientBrush SpreadMethod="Reflect">
-                        <LinearGradientBrush.RelativeTransform>
-                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="0"/>
-                        </LinearGradientBrush.RelativeTransform>
-
-                        <GradientStop Color="Red" Offset="0.958"/>
-                        <GradientStop Color="#00FF0000" Offset="0.552"/>
-                    </LinearGradientBrush>
-                </Ellipse.Stroke>
-            </Ellipse>
-
-            <Ellipse StrokeThickness="10" VerticalAlignment="Center" 
-                     HorizontalAlignment="Center" x:Name="elp2" Height="500" Width="500" RenderTransformOrigin="0.5,0.5">
-                <Ellipse.Projection>
-                    <PlaneProjection RotationZ="0" RotationY="45" RotationX="45"/>
-                </Ellipse.Projection>
-                <Ellipse.RenderTransform>
-                    <CompositeTransform Rotation="-60.73"/>
-                </Ellipse.RenderTransform>
-                <Ellipse.Stroke>
-                    <LinearGradientBrush>
-                        <LinearGradientBrush.RelativeTransform>
-                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="-90"/>
-                        </LinearGradientBrush.RelativeTransform>
-
-                        <GradientStop Color="#FF1500FF" Offset="0.958"/>
-                        <GradientStop Color="#001500FF" Offset="0.552"/>
-                    </LinearGradientBrush>
-                </Ellipse.Stroke>
-            </Ellipse>
-
-            <Ellipse StrokeThickness="10" VerticalAlignment="Center" 
-                     HorizontalAlignment="Center" x:Name="elp3" Height="200" Width="500" RenderTransformOrigin="0.5,0.5">
-                <Ellipse.Projection>
-                    <PlaneProjection RotationZ="0" RotationY="0" RotationX="0"/>
-                </Ellipse.Projection>
-                <Ellipse.RenderTransform>
-                    <CompositeTransform Rotation="13.325"/>
-                </Ellipse.RenderTransform>
-                <Ellipse.Stroke>
-                    <LinearGradientBrush>
-                        <LinearGradientBrush.RelativeTransform>
-                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="180"/>
-                        </LinearGradientBrush.RelativeTransform>
-
-                        <GradientStop Color="Yellow" Offset="0.958"/>
-                        <GradientStop Color="#00000000" Offset="0.552"/>
-                    </LinearGradientBrush>
-                </Ellipse.Stroke>
-            </Ellipse>
-
-        </Grid>-->
+        <Grid Background="Black" Grid.RowSpan="2">
+            <controls:CircleBackground Color1="Purple" Color2="Red"
+                                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        </Grid>
 
         <Border Grid.RowSpan="2" Opacity="0.8" x:Name="acrylic">
             <Border.Background>
