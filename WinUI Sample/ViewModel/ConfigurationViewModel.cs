@@ -52,9 +52,11 @@ namespace WinUI_Sample.ViewModel
 
         public ConfigurationViewModel()
         {
-            Backgrounds = new List<string> { "Mica", "Static image" };
+            
             _configurationManager = App.GetService<Model.ConfigurationManager>();
             
+            Backgrounds = _configurationManager.GetBackgroundOptions();
+
             SaveCommand = new AsyncCommand(save);
             PathCommand = new ButtonCommand(GetPath);
             CancelCommand = new ButtonCommand(Cancel);
@@ -64,6 +66,8 @@ namespace WinUI_Sample.ViewModel
             IsMicaAvalible = Mica.IsSupported();
             if (!IsMicaAvalible) Backgrounds.RemoveAt(0);
         }
+
+        
 
         private async Task save()
         {

@@ -58,7 +58,7 @@ namespace Tools
         Microsoft.UI.Composition.SystemBackdrops.MicaController m_micaController;
         Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
 
-
+        public bool IsApplied { get; private set; }
         public Mica(Window window)
         {
 
@@ -97,9 +97,10 @@ namespace Tools
                 // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
                 m_micaController.AddSystemBackdropTarget(_window.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
                 m_micaController.SetSystemBackdropConfiguration(m_configurationSource);
+                IsApplied = true;
                 return true; // succeeded
             }
-
+            IsApplied = false;
             return false; // Mica is not supported on this system
         }
 

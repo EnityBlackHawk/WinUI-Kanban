@@ -47,8 +47,10 @@ namespace WinUI_Sample
         public void SetBackground()
         {
             var configManager = App.GetService<Model.ConfigurationManager>();
+            var options = configManager.GetBackgroundOptions();
+            var type = configManager.GetBackgroundType();
 
-            if (configManager.GetBackgroundType() == "Mica")
+            if (type == options[0]) // Mica
             {
                 var b = _mica.ApplyMica();
 
@@ -59,13 +61,22 @@ namespace WinUI_Sample
                 }
 
                 blackgroundImage.Source = null;
+                circles.Visibility = Visibility.Visible;
                 acrylic.Visibility = Visibility.Collapsed;
             }
-            else if(configManager.GetBackgroundType() == "Static image")
+            else if(type == options[1]) //static image
             {
-                //_mica.Remove();
+                if (_mica.IsApplied) _mica.Remove();
                 blackgroundImage.Source = configManager.GetBitmapImage();
                 acrylic.Visibility = configManager.IsAcrylicActivated() ? Visibility.Visible : Visibility.Collapsed;
+                circles.Visibility = Visibility.Collapsed;
+            }
+
+            else if(type == options[2]) //circles effect
+            {
+                if (_mica.IsApplied) _mica.Remove();
+                acrylic.Visibility = configManager.IsAcrylicActivated() ? Visibility.Visible : Visibility.Collapsed;
+                circles.Visibility = Visibility.Visible;
             }
 
         }

@@ -52,7 +52,7 @@
 
         <Image Grid.RowSpan="2" Stretch="UniformToFill" x:Name="blackgroundImage"/>
 
-        <Grid Background="Black" Grid.RowSpan="2">
+        <Grid Background="Black" Grid.RowSpan="2"  x:Name="circles">
             <controls:CircleBackground Color1="Purple" Color2="Red"
                                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         </Grid>

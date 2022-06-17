@@ -52,11 +52,12 @@ namespace WinUI_Sample.Model
             await _dataBaseService.RemoveAll<Model.ConfigurationModel>();
         }
 
+        public List<string> GetBackgroundOptions() => new List<string> { "Mica", "Static image", "Circles" };
+     
         public void SetBackgroundType(string type) => _configModel.BackgroundType = type;
         public string GetBackgroundType() => _configModel.BackgroundType;
         public void SetBackgroundImagePath(string path) => _configModel.BackgroundImagePath = path;
         public string GetBackgroundImagePath() => _configModel.BackgroundImagePath;
-
         public bool IsAcrylicActivated() => _configModel.IsAcrylicActivated;
         public void SetAcrylicActivated(bool isActivated) => _configModel.IsAcrylicActivated = isActivated;
         public BitmapImage GetBitmapImage() => _configModel.BitmapImage;
