@@ -16,6 +16,7 @@
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Themes\ListViewStyle.xaml" />
     <None Remove="View\ConfigurationView.xaml" />
     <None Remove="View\HomeView.xaml" />
     <None Remove="View\ItemDetailView.xaml" />
@@ -59,6 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Remove="View\TablesView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Themes\ListViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\ConfigurationView.xaml">

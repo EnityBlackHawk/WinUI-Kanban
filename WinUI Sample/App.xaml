@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <!-- Other merged dictionaries here -->
+                <ResourceDictionary Source="Themes/ListViewStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
             <SolidColorBrush x:Key="WindowCaptionBackground">transparent</SolidColorBrush>

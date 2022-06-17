@@ -48,26 +48,12 @@
             <TextBlock Text="To Do" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Margin="10"/>
             
-            <ListView Grid.Column="0" Grid.Row="1" x:Name="ToDoList" ScrollViewer.VerticalScrollMode="Enabled" Padding="0,5,5,5" Margin="5,0,0,0"
-                      CornerRadius="5"
-                    DragOver="ListView_DragOver" Drop="ListView_Drop" SelectionMode="None" DragLeave="ListView_DragLeave" DragItemsCompleted="ListView_DragItemsCompleted"
-                    DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" Background="#00000000"
-                    CanDragItems="True" CanReorderItems="True" AllowDrop="True" ItemClick="ToDoList_ItemClick" IsItemClickEnabled="True"
-                    ItemsSource="{x:Bind ViewModelInstance.ToDoList, Mode=TwoWay}" ItemTemplate="{StaticResource dt}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <ListViewItemPresenter 
-                                        PointerOverBackground="#AFFFFFFF"
-                                        ContentMargin="5">
-                                    </ListViewItemPresenter>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
+            <ListView Grid.Column="0" Grid.Row="1" x:Name="ToDoList" ScrollViewer.VerticalScrollMode="Enabled" 
+                      Padding="0,5,5,5" Margin="5,0,0,0"
+                    DragOver="ListView_DragOver" Drop="ListView_Drop" DragLeave="ListView_DragLeave" 
+                    DragItemsCompleted="ListView_DragItemsCompleted" ItemClick="ToDoList_ItemClick"
+                    DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" 
+                    ItemsSource="{x:Bind ViewModelInstance.ToDoList, Mode=TwoWay}" Style="{StaticResource ListViewStyle}" ItemTemplate="{StaticResource dt}">
 
                 <ListView.Resources>
                     <Storyboard x:Key="an_On" FillBehavior="HoldEnd">
@@ -86,27 +72,16 @@
             <!-- Column 1 -->
             <TextBlock Text="In progress" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Grid.Column="1" Margin="10"/>
-            <ListView Grid.Column="1" Grid.Row="1" x:Name="InProgressList" SelectionMode="None" Padding="5" CornerRadius="5"
-                      DragOver="ListView_DragOver" Drop="ListView_Drop" Background="#00000000"
-                      DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" DragLeave="ListView_DragLeave" DragItemsCompleted="ListView_DragItemsCompleted"
-                      CanDragItems="True" CanReorderItems="True" AllowDrop="True" ItemClick="ToDoList_ItemClick" IsItemClickEnabled="True"
-                      ItemsSource="{x:Bind ViewModelInstance.InProgressList, Mode=TwoWay}" ItemTemplate="{StaticResource dt}">
-                
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <ListViewItemPresenter 
-                                        PointerOverBackground="#AFFFFFFF"
-                                        ContentMargin="5">
-                                    </ListViewItemPresenter>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                
+            
+            <ListView Grid.Column="1" Grid.Row="1" x:Name="InProgressList" 
+                      DragOver="ListView_DragOver" Drop="ListView_Drop"
+                      DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" 
+                      DragLeave="ListView_DragLeave"
+                      DragItemsCompleted="ListView_DragItemsCompleted"
+                      ItemClick="ToDoList_ItemClick"
+                      ItemsSource="{x:Bind ViewModelInstance.InProgressList, Mode=TwoWay}" 
+                      ItemTemplate="{StaticResource dt}"
+                      Style="{StaticResource ListViewStyle}">
                 
                 <ListView.Resources>
                     <Storyboard x:Key="an_On" FillBehavior="HoldEnd">
@@ -124,27 +99,14 @@
             <!-- Column 2 -->
             <TextBlock Text="Done" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"
                        FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Grid.Column="2" Margin="10"/>
-            <ListView Grid.Column="2" Grid.Row="1" x:Name="DoneList" SelectionMode="None" Padding="5,5,0,5" CornerRadius="5"
-                      DragOver="ListView_DragOver" Drop="ListView_Drop" Background="#00000000" Margin="0,0,5,0"
+            
+            <ListView Grid.Column="2" Grid.Row="1" x:Name="DoneList" Padding="5,5,0,5" CornerRadius="5"
+                      DragOver="ListView_DragOver" Drop="ListView_Drop" Margin="0,0,5,0"
                       DragItemsStarting="ListView_DragItemsStarting" DragEnter="ListView_DragEnter" DragLeave="ListView_DragLeave" DragItemsCompleted="ListView_DragItemsCompleted"
-                      CanDragItems="True" CanReorderItems="True" AllowDrop="True" ItemClick="ToDoList_ItemClick" IsItemClickEnabled="True"
-                      ItemsSource="{x:Bind ViewModelInstance.DoneList, Mode=TwoWay}" ItemTemplate="{StaticResource dt}">
-                
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <ListViewItemPresenter 
-                                        PointerOverBackground="#AFFFFFFF"
-                                        ContentMargin="5">
-                                    </ListViewItemPresenter>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                
+                      ItemClick="ToDoList_ItemClick"
+                      ItemsSource="{x:Bind ViewModelInstance.DoneList, Mode=TwoWay}" 
+                      ItemTemplate="{StaticResource dt}"
+                      Style="{StaticResource ListViewStyle}">
                 
                 <ListView.Resources>
                     <Storyboard x:Key="an_On" FillBehavior="HoldEnd">

@@ -55,7 +55,7 @@ namespace WinUI_Sample.ViewModel
             
             _configurationManager = App.GetService<Model.ConfigurationManager>();
             
-            Backgrounds = _configurationManager.GetBackgroundOptions();
+            Backgrounds = Model.ConfigurationManager.GetBackgroundOptions();
 
             SaveCommand = new AsyncCommand(save);
             PathCommand = new ButtonCommand(GetPath);

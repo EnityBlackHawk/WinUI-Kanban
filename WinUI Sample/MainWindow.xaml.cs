@@ -47,7 +47,7 @@ namespace WinUI_Sample
         public void SetBackground()
         {
             var configManager = App.GetService<Model.ConfigurationManager>();
-            var options = configManager.GetBackgroundOptions();
+            var options = Model.ConfigurationManager.GetBackgroundOptions();
             var type = configManager.GetBackgroundType();
 
             if (type == options[0]) // Mica
