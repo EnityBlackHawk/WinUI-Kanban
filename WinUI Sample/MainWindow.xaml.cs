@@ -61,7 +61,7 @@ namespace WinUI_Sample
                 }
 
                 blackgroundImage.Source = null;
-                circles.Visibility = Visibility.Visible;
+                circles.Visibility = Visibility.Collapsed;
                 acrylic.Visibility = Visibility.Collapsed;
             }
             else if(type == options[1]) //static image
