@@ -16,6 +16,8 @@
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
 	  <WindowsPackageType>None</WindowsPackageType>
 	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	  <AssemblyName>WinUI Kanban</AssemblyName>
+	  <ApplicationIcon>k.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="View\ConfigurationView.xaml" />
@@ -32,6 +34,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="k.ico" />
   </ItemGroup>
 
   <ItemGroup>
